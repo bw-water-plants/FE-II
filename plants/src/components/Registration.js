@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { login } from '../actions/actions';
+import { registration } from '../actions/actions';
 import Loader from "react-loader-spinner";
 
-class Login extends React.Component {
+class Registration extends React.Component {
 
     state = {
         credentials: {
             username: '',
-            password: ''
+            password: '',
+            phoneNumber: ''
         }
     }
 
@@ -21,9 +22,9 @@ class Login extends React.Component {
             })
     }
 
-    login = e => {
+    registration = e => {
         e.preventDefault();
-        this.props.login(this.state.credentials)
+        this.props.registration(this.state.credentials)
         .then(() => {
             this.props.history.push('/protected');
           });
@@ -32,23 +33,29 @@ class Login extends React.Component {
     render(){
         return (
             <div>
-                <form onSubmit={this.login}>
-                    <input 
+                <form onSubmit={this.registration}>
+                    Username:<input 
                         type="text"
                         name="username"
                         value={this.state.credentials.username}
                         onChange={this.handleChange}
-                    />
-                    <input 
-                        type="text"
+                    />< br />
+                    Password<input 
+                        type="password"
                         name="password"
                         value={this.state.credentials.password}
                         onChange={this.handleChange}
-                    />
+                    />< br />
+                    Phone Number<input 
+                        type="text"
+                        name="phoneNumber"
+                        value={this.state.credentials.phoneNumber}
+                        onChange={this.handleChange}
+                    />< br />
                     <button>
-                    {this.props.isLoggingIn 
+                        {this.props.isRegistering 
                             ? <Loader type="ThreeDots" color="#00BFFF" height="25" width="50" /> 
-                            : "Login"}
+                            : "Registration"}
                     </button>
                 </form>
             </div>
@@ -57,6 +64,6 @@ class Login extends React.Component {
 
 }
 const mapStateToProps = state => ({
-    isLoggingIn: state.isLoggingIn
+    isRegistering: state.isRegistering
 })
-export default connect(mapStateToProps, { login })(Login)
+export default connect(mapStateToProps, { registration })(Registration)
