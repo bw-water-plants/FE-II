@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { registration } from '../actions/actions';
+import { registration, login } from '../actions/actions';
 import Loader from "react-loader-spinner";
 
 class Registration extends React.Component {
@@ -26,7 +26,9 @@ class Registration extends React.Component {
         e.preventDefault();
         this.props.registration(this.state.credentials)
         .then(() => {
-            this.props.history.push('/protected');
+            this.props.login(this.state.credentials).then(() => {
+                this.props.history.push('/protected');
+              });
           });
     };
 
@@ -64,6 +66,6 @@ class Registration extends React.Component {
 
 }
 const mapStateToProps = state => ({
-    isRegistering: state.isRegistering
+    isRegistering: state.auth.isRegistering,
 })
-export default connect(mapStateToProps, { registration })(Registration)
+export default connect(mapStateToProps, { registration, login })(Registration)

@@ -4,7 +4,7 @@ import {
     LOGIN_FAILURE, 
     REGISTRATION_START, 
     REGISTRATION_SUCCESS, 
-    REGISTRATION_FAILURE 
+    REGISTRATION_FAILURE,
 } from '../actions/actions';
 
 const initialState = {
@@ -12,23 +12,12 @@ const initialState = {
     error: '',
 
 //user state
-    user: [],
+    userId: '',
     isLoggingIn: false,
     isRegistering: false,
-    isGettingUser: false,
-    isUpdatingUser: false,
-    isDeletingUser: false,
-
-//plant state
-    plants: [],
-    isGettingPlant: false,
-    isGettingAllPlants: false,
-    isUpdatingPlant: false,
-    isDeletingPlant: false,
-    
 }
 
-const reducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action) => {
     switch(action.type) {
         case LOGIN_START:
             return {
@@ -40,6 +29,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoggingIn: false,
+                userid: action.payload.user.id,
                 error: ''
             }
         case LOGIN_FAILURE:
@@ -67,8 +57,8 @@ const reducer = (state = initialState, action) => {
                 error: action.payload
             }
         default: 
-            return state;;
+            return state;
     }
 };
 
-export default reducer;
+export default authReducer;

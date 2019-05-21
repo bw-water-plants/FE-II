@@ -57,6 +57,6 @@ class Login extends React.Component {
 
 }
 const mapStateToProps = state => ({
-    isLoggingIn: state.isLoggingIn
+    isLoggingIn: state.auth.isLoggingIn
 })
 export default connect(mapStateToProps, { login })(Login)
