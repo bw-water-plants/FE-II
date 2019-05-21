@@ -24,7 +24,6 @@ export const login = creds => dispatch => {
     return axios 
         .post("https://water-my-plants-lambda.herokuapp.com/api/auth/login", creds)
         .then(res => {
-            console.log(res.data)
             localStorage.setItem('token', res.data.token)
             dispatch({ type: LOGIN_SUCCESS, payload: res.data})
         })
@@ -56,9 +55,9 @@ export const GET_USERS_FAILURE = 'GET_USERS_FAILURE';
 
 
 export const getUsers = () => dispatch => {
-    dispatch({type: GET_USERS})
+    dispatch({type: GET_USERS});
     axiosWithAuth()
-        .get("/api/users")
+        .get("api/users")
         .then(res => {
             dispatch({ type: GET_USERS_SUCCESS, payload: res.data})
         })
@@ -74,8 +73,8 @@ export const GET_SINGLE_USER_FAILURE = 'GET_SINGLE_USER_FAILURE';
 
 export const getUser = userId => dispatch => {
     dispatch({type: GET_SINGLE_USER})
-    axiosWithAuth()
-        .get("/api/users/" + userId)
+    return axiosWithAuth()
+        .get("https://water-my-plants-lambda.herokuapp.com/api/users/" + userId)
         .then(res => {
             dispatch({ type: GET_SINGLE_USER_SUCCESS, payload: res.data})
         })
@@ -89,10 +88,11 @@ export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
 export const UPDATE_USER_FAILURE = 'UPDATE_USER_FAILURE';
 
 
-export const updateUsers = userId => userObject => dispatch => {
+export const updateUser = (userId, userObject) => dispatch => {
     dispatch({type: UPDATE_USER})
-    axiosWithAuth()
-        .put("/api/users/" + userId, userObject)
+    console.log(userObject)
+    return axiosWithAuth()
+        .put("https://water-my-plants-lambda.herokuapp.com/api/users/" + userId, userObject)
         .then(res => {
             dispatch({ type: UPDATE_USER_SUCCESS, payload: res.data})
         })

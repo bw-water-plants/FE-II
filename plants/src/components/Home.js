@@ -1,5 +1,5 @@
 import React from 'react';
-//import UserProfile from './UserProfile';
+import UserProfile from './UserProfile';
 
 class Home extends React.Component {
     
@@ -7,7 +7,7 @@ class Home extends React.Component {
         return (
             <div>
                 Hi
-                {/* <UserProfile /> */}
+                <UserProfile />
             </div>
         )
     }

@@ -18,12 +18,12 @@ const initialState = {
     error: '',
 
 //user state
-    user: [],
+    user: {},
     users: [],
     isGettingAllUsers: false,
     isGettingUser: false,
     isUpdatingUser: false,
-    isDeletingUser: false,
+    isDeletingUser: false
 
 }
 
@@ -57,7 +57,7 @@ const userReducer = (state = initialState, action) => {
         case GET_SINGLE_USER_SUCCESS:
             return {
                 ...state,
-                user: action.payload,
+                user: action.payload[0],
                 isGettingUser: false,
                 error: ''
             }

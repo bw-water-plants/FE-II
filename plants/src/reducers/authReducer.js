@@ -12,7 +12,7 @@ const initialState = {
     error: '',
 
 //user state
-    user: [],
+    userId: '',
     isLoggingIn: false,
     isRegistering: false,
 }
@@ -29,6 +29,7 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoggingIn: false,
+                userid: action.payload.user.id,
                 error: ''
             }
         case LOGIN_FAILURE:
