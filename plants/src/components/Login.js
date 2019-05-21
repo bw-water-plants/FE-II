@@ -25,6 +25,9 @@ const LoginForm = styled.form`
         border: none;
         border-radius: 20px;
         padding-top: 5px;
+        font-size: 25px;
+        color: hsla(149, 35%, 45%, 1);
+        text-align: center;
         
 
         :first-child {

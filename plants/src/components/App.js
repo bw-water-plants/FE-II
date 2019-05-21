@@ -66,7 +66,7 @@ function App() {
       <AppStyles>
         <HeaderContainer>
           <div className="header-title">
-            <Link to="/protected"><h1>Water My Plant</h1></Link>
+            <Link to="/protected"><h1>Water My Plants</h1></Link>
           </div>
           <HeaderNav>
             <Link to="/login">Log In</Link>
