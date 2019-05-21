@@ -66,6 +66,6 @@ class Registration extends React.Component {
 
 }
 const mapStateToProps = state => ({
-    isRegistering: state.isRegistering
+    isRegistering: state.auth.isRegistering,
 })
 export default connect(mapStateToProps, { registration, login })(Registration)
