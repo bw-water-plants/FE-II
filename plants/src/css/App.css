@@ -2,32 +2,76 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+:root {
+  --text-color: hsla(210, 50%, 85%, 1);
+  --shadow-color: hsla(210, 40%, 52%, .4);
+  --btn-color: hsl(210, 80%, 42%);
+  --bg-color: #141218;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+* {
+  box-sizing: border-box;
+}
+
+
+
+button {
+  position:relative;
+  padding: 10px 20px;  
+  border: 1px solid hsla(210, 50%, 85%, 1);
+  background: none;
+  cursor: pointer;
+  
+  margin: 10px auto 0;
+  
+  font-family: 'Amatic SC', cursive;
+  font-weight: 900;
+  /* text-transform: uppercase; */
+  font-size: 25px;  
   color: white;
+  
+  background-color: var(--btn-color);
+  box-shadow: var(--shadow-color) 2px 2px 22px;
+  border-radius: 20px; 
+  z-index: 0;  
+  overflow: hidden;   
 }
 
-.App-link {
-  color: #61dafb;
+.right, .left {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+.right {
+  left: 66%;
+}
+.left {
+  right: 66%;
+}
+/* bubbles */
+button::before {
+  content: '';
+  pointer-events: none;
+  opacity: .6;
+  background:
+    radial-gradient(circle at 20% 35%,  transparent 0,  transparent 2px, var(--text-color) 3px, var(--text-color) 4px, transparent 4px),
+    radial-gradient(circle at 75% 44%, transparent 0,  transparent 2px, var(--text-color) 3px, var(--text-color) 4px, transparent 4px),
+    radial-gradient(circle at 46% 52%, transparent 0, transparent 4px, var(--text-color) 5px, var(--text-color) 6px, transparent 6px);
+
+  width: 100%;
+  height: 300%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  animation: bubbles 5s linear infinite both;
 }
 
-@keyframes App-logo-spin {
+@keyframes bubbles {
   from {
-    transform: rotate(0deg);
+    transform: translate();
   }
   to {
-    transform: rotate(360deg);
+    transform: translate(0, -66.666%);
   }
 }
