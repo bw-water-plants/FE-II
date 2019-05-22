@@ -9,19 +9,23 @@ class Plant extends React.Component {
     state = {
         updatingPlant: false, 
         formData: {
-            plantName: '',
-            dailyWaterTime: '',
+            plantName: 'test',
+            dailyWaterTime: 'test',
         }
     };
 
     componentDidMount() {
+        const plant = this.props.plant[1];   
+        console.log(plant.plantName)
+        console.log(plant.dailyWaterTime)
         this.setState({
             ...this.state,
             formData: {
-                plantName: this.props.plant.plantName,
-                dailyWaterTime: this.props.plant.dailyWaterTime
+                plantName: plant.plantName,
+                dailyWaterTime: plant.dailyWaterTime
             }
         })
+        console.log(this.state)
     }
     
     removePlant = id => {
@@ -50,7 +54,7 @@ class Plant extends React.Component {
     };
 
     handleEditPlant = () => {
-         this.props.updatePlant(this.props.plants.plantName, this.state.formData)
+         this.props.updatePlant(this.props.plants.id, this.state.formData)
          .then(this.toggleForm())
     }
 
