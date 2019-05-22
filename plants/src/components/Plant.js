@@ -66,7 +66,7 @@ class Plant extends React.Component {
                 {!this.state.updatingPlant ?
                 <div>
                     <h3>{plant.plantName}</h3>
-                    <p>{moment(plant.dailyWaterTime).format('h:mm:ss a')}</p>
+                    <p>{moment(plant.dailyWaterTime).format('hh:mm:ss a')}</p>
                     <button onClick={() => this.toggleForm()}><i className="fas fa-edit"></i></button>
                     <button onClick={() => this.removePlant(plant.id)}><i className="fas fa-trash-alt"></i></button>
                 </div>
