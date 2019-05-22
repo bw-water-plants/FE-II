@@ -11,6 +11,8 @@ class PlantsList extends React.Component {
     }
 
 
+
+
     render() {
         console.log(this.props.plants)
         const userId = localStorage.getItem('id');
