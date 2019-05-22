@@ -3,6 +3,26 @@ import { connect } from 'react-redux';
 import { getUser, updateUser} from '../actions/actions';
 import { withRouter } from 'react-router-dom';
 import Loader from "react-loader-spinner";
+import styled from 'styled-components';
+
+const UserInfoStyles = styled.div`
+
+`
+const UserInfo = styled.div`
+
+`
+
+const UserWrapper = styled.div`
+
+`
+
+const UserButtonsWrapper = styled.div`
+
+`
+
+const Info = styled.div`
+
+`
 
 class UserProfile extends React.Component {
 
@@ -70,18 +90,19 @@ class UserProfile extends React.Component {
 
     render() {
         return (
-            <div className="user-info-styles">
+            <UserInfoStyles>
+                
             {!this.state.updatingUser ? 
-                <div className="user-styles">
-                    <div className="user-btn-styles">
+                <UserWrapper>
+                    <UserButtonsWrapper>
                         <button onClick={() => this.toggleForm()}>Update</button>
                         <button onClick={() => this.logout()}>Logout</button>
-                    </div>
-                    <div className="user-info">
+                    </UserButtonsWrapper>
+                    <Info>
                         <div><strong>Username: </strong>{this.props.user.username}</div>
                         <div><strong>Phone Number: </strong>{this.props.user.phoneNumber}</div>
-                    </div>
-                </div>
+                    </Info>
+                </UserWrapper>
                 
                 :
                 <div>
@@ -103,7 +124,7 @@ class UserProfile extends React.Component {
                 <button onClick={() => this.toggleForm()}>Cancel</button>
             </div>
             }
-            </div>
+            </UserInfoStyles>
         )
     }
 }

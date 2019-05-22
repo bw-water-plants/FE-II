@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updatePlant, deletePlant } from '../actions/actions';
+import { getPlant, updatePlant, deletePlant } from '../actions/actions';
 import moment from 'moment';
 
 
@@ -9,15 +9,13 @@ class Plant extends React.Component {
     state = {
         isUpdatingPlant: false, 
         formData: {
-            plantName: 'test',
-            dailyWaterTime: 'test',
+            plantName: '',
+            dailyWaterTime: '',
         }
     };
 
     componentDidMount() {
-        const plant = this.props.plant[1];   
-        console.log(plant.plantName)
-        console.log(plant.dailyWaterTime)
+        const plant = this.props.plant[1];
         this.setState({
             ...this.state,
             formData: {
@@ -25,7 +23,6 @@ class Plant extends React.Component {
                 dailyWaterTime: plant.dailyWaterTime
             }
         })
-        console.log(this.state)
     }
     
     removePlant = id => {
@@ -55,15 +52,15 @@ class Plant extends React.Component {
 
     handleEditPlant() {
         console.log(this.props);
-         this.props.updatePlant(this.props.plant[1].id, this.state.formData)
-        //  .then(this.toggleForm())
-        //  .then(() => {
-        //      this.props.history.push('/plant');
-        //  });
+         this.props.updatePlant(this.props.plant.id, this.state.formData)
+         .then(this.toggleForm())
+         .then(() => {
+             this.props.history.push('/plant');
+         });
     }
 
     render() {        
-        const plant = this.props.plant[1];    
+        const plant = this.props.plant[0];    
         // const waterTime = plant.dailyWaterTime;    
 
         return(
@@ -105,4 +102,4 @@ const mapStateToProps = state => ({
     plant: state.plant.plants
 })
 
-export default connect(mapStateToProps, { updatePlant, deletePlant })(Plant);
+export default connect(mapStateToProps, { getPlant, updatePlant, deletePlant })(Plant);
