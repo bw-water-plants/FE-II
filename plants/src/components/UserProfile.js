@@ -70,14 +70,19 @@ class UserProfile extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="user-info-styles">
             {!this.state.updatingUser ? 
-                <div>
-                    <div><strong>Username: </strong>{this.props.user.username}</div>
-                    <div><strong>Phone Number: </strong>{this.props.user.phoneNumber}</div>
-                    <button onClick={() => this.toggleForm()}>Update</button>
-                    <button onClick={() => this.logout()}>Logout</button>
+                <div className="user-styles">
+                    <div className="user-btn-styles">
+                        <button onClick={() => this.toggleForm()}>Update</button>
+                        <button onClick={() => this.logout()}>Logout</button>
+                    </div>
+                    <div className="user-info">
+                        <div><strong>Username: </strong>{this.props.user.username}</div>
+                        <div><strong>Phone Number: </strong>{this.props.user.phoneNumber}</div>
+                    </div>
                 </div>
+                
                 :
                 <div>
                     <form>
@@ -98,7 +103,7 @@ class UserProfile extends React.Component {
                 <button onClick={() => this.toggleForm()}>Cancel</button>
             </div>
             }
-             </div>
+            </div>
         )
     }
 }

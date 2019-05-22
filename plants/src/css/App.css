@@ -2,18 +2,41 @@
   text-align: center;
 }
 
+.user-info-styles {
+  display: flex;
+  flex-direction: column;
+width: 100%;
+}
+
+.user-styles {
+  
+}
+
+.user-btn-styles {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 50px;
+  
+}
+
+
+
+* {
+  box-sizing: border-box;
+}
+/* buttons */
 :root {
   --text-color: hsla(210, 50%, 85%, 1);
   --shadow-color: hsla(210, 40%, 52%, .4);
   --btn-color: hsl(210, 80%, 42%);
   --bg-color: #141218;
 }
-
-* {
-  box-sizing: border-box;
-}
-
-
 
 button {
   position:relative;

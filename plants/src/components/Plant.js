@@ -7,7 +7,7 @@ import moment from 'moment';
 class Plant extends React.Component {
 
     state = {
-        updatingPlant: false, 
+        isUpdatingPlant: false, 
         formData: {
             plantName: 'test',
             dailyWaterTime: 'test',
@@ -40,7 +40,7 @@ class Plant extends React.Component {
         console.log('toggling form')
         this.setState({
             ...this.state,
-            updatingPlant: !this.state.updatingPlant
+            isUpdatingPlant: !this.state.isUpdatingPlant
         })
     }
 
@@ -53,20 +53,25 @@ class Plant extends React.Component {
         });
     };
 
-    handleEditPlant = () => {
-         this.props.updatePlant(this.props.plants.id, this.state.formData)
-         .then(this.toggleForm())
+    handleEditPlant() {
+        console.log(this.props);
+         this.props.updatePlant(this.props.plant[1].id, this.state.formData)
+        //  .then(this.toggleForm())
+        //  .then(() => {
+        //      this.props.history.push('/plant');
+        //  });
     }
 
     render() {        
-        const plant = this.props.plant[1];        
+        const plant = this.props.plant[1];    
+        // const waterTime = plant.dailyWaterTime;    
 
         return(
             <div>
-                {!this.state.updatingPlant ?
+                {!this.state.isUpdatingPlant ?
                 <div>
                     <h3>{plant.plantName}</h3>
-                    <p>{moment(plant.dailyWaterTime).format('hh:mm:ss a')}</p>
+                    <p>{plant.dailyWaterTime}</p>
                     <button onClick={() => this.toggleForm()}><i className="fas fa-edit"></i></button>
                     <button onClick={() => this.removePlant(plant.id)}><i className="fas fa-trash-alt"></i></button>
                 </div>
