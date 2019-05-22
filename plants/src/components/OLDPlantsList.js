@@ -42,6 +42,7 @@ class PlantsList extends React.Component {
     };
 
     render() {
+        console.log(this.props.plants)
         const userId = localStorage.getItem('id');
         const myPlants = this.props.plants.filter(plant => (
             plant.user_id = userId
