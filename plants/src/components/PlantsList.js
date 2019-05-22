@@ -13,10 +13,19 @@ class PlantsList extends React.Component {
 
     render() {
         console.log(this.props.plants)
-        
+        const userId = localStorage.getItem('id');
+        const myPlants = this.props.plants.filter(plant => (
+            plant.user_id = userId
+        ))
+
         return (
             <div>
-                PlantList
+                {myPlants.map(plant =>(
+                    <div key={plant.id}>
+                        {plant.plantName}
+                        {plant.dailyWaterTime}
+                    </div>
+                ) )}
             </div>
         )
     }
