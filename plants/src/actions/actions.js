@@ -178,6 +178,7 @@ export const UPDATE_PLANT_FAILURE = 'UPDATE_PLANT_FAILURE';
 
 export const updatePlant = plantId => plantObject => dispatch => {
     dispatch({type: UPDATE_PLANT})
+
     axiosWithAuth()
         .put("https://water-my-plants-lambda.herokuapp.com/api/plants/" + plantId, plantObject)
         .then(res => {
