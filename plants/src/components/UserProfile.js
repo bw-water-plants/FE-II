@@ -18,7 +18,7 @@ class UserProfile extends React.Component {
     componentDidMount() {
         this.getUser();
         
-    }
+    }   
 
     getUser() { 
     console.log(this.state.userId)
@@ -73,8 +73,8 @@ class UserProfile extends React.Component {
             <div>
             {!this.state.updatingUser ? 
                 <div>
-                    <div>{this.props.user.username}</div>
-                    <div>{this.props.user.phoneNumber}</div>
+                    <div><strong>Username: </strong>{this.props.user.username}</div>
+                    <div><strong>Phone Number: </strong>{this.props.user.phoneNumber}</div>
                     <button onClick={() => this.toggleForm()}>Update</button>
                     <button onClick={() => this.logout()}>Logout</button>
                 </div>

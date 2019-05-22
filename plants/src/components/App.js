@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import plantcacti from '../assets/plant-cacti2.png';
 import PlantsList from './PlantsList';
+import Plant from './Plant';
 
 const AppStyles = styled.div`
 
@@ -86,6 +87,7 @@ function App() {
         <Route path="/login" component={Login} />
         <Route path="/registration" component={Registration} />
         <PrivateRoute exact path="/protected" component={Home} />
+        <PrivateRoute path="/plant" component={Plant} />
         </AppStyles>
       
     </Router>
