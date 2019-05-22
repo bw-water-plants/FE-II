@@ -25,7 +25,8 @@ export const login = creds => dispatch => {
         .post("https://water-my-plants-lambda.herokuapp.com/api/auth/login", creds)
         .then(res => {
             localStorage.setItem('token', res.data.token)
-            dispatch({ type: LOGIN_SUCCESS, payload: res.data})
+            localStorage.setItem('id', res.data.user.id)
+            dispatch({ type: LOGIN_SUCCESS, payload: res.data}, console.log(res.data))
         })
         .catch(err => {
             dispatch({type: LOGIN_FAILURE, payload: err})
@@ -75,8 +76,8 @@ export const getUser = userId => dispatch => {
     dispatch({type: GET_SINGLE_USER})
     return axiosWithAuth()
         .get("https://water-my-plants-lambda.herokuapp.com/api/users/" + userId)
-        .then(res => {
-            dispatch({ type: GET_SINGLE_USER_SUCCESS, payload: res.data})
+        .then(res =>  {
+            dispatch({ type: GET_SINGLE_USER_SUCCESS, payload: res.data} )
         })
         .catch(err => {
             dispatch({ type: GET_SINGLE_USER_FAILURE, payload: err })
@@ -90,7 +91,6 @@ export const UPDATE_USER_FAILURE = 'UPDATE_USER_FAILURE';
 
 export const updateUser = (userId, userObject) => dispatch => {
     dispatch({type: UPDATE_USER})
-    console.log(userObject)
     return axiosWithAuth()
         .put("https://water-my-plants-lambda.herokuapp.com/api/users/" + userId, userObject)
         .then(res => {
@@ -144,7 +144,7 @@ export const GET_PLANTS_FAILURE = 'GET_PLANTS_FAILURE';
 export const getPlants = () => dispatch => {
     dispatch({type: GET_PLANTS})
     axiosWithAuth()
-        .get("/api/plants/")
+        .get("https://water-my-plants-lambda.herokuapp.com/api/plants/")
         .then(res => {
             dispatch({ type: GET_PLANTS_SUCCESS, payload: res.data})
         })

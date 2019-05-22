@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 import plantcacti from '../assets/plant-cacti2.png';
+import PlantsList from './PlantsList';
 
 const AppStyles = styled.div`
 
@@ -73,11 +74,10 @@ function App() {
             <Link to="/registration">Sign Up</Link>            
             </HeaderNav>
         </HeaderContainer>
+                   
         <Route path="/login" component={Login} />
         <Route path="/registration" component={Registration} />
         <PrivateRoute exact path="/protected" component={Home} />
-        
-        
         </AppStyles>
       
     </Router>
