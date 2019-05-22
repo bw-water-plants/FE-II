@@ -7,6 +7,7 @@ class UserProfile extends React.Component {
 
     state = {
         updatingUser: false,
+        userId: localStorage.getItem('id'),
         formData: {
             username: '',
             phoneNumber: '',
@@ -15,12 +16,13 @@ class UserProfile extends React.Component {
 
     componentDidMount() {
         this.getUser();
+        
     }
 
     getUser() { 
-        this.props.getUser(this.props.userId)
+    console.log(this.state.userId)
+        this.props.getUser(this.state.userId)
             .then(() => {
-                console.log('test')
             this.setState({
                 ...this.state,
                 formData: {
@@ -48,8 +50,7 @@ class UserProfile extends React.Component {
         });
       };
 
-    handleUpdateUser = userId => {
-        console.log(userId)
+    handleUpdateUser = () => {
         this.props.updateUser(this.props.user.id, this.state.formData)
         .then(this.toggleForm(), this.getUser())
     }

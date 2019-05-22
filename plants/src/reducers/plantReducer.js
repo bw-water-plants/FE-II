@@ -37,7 +37,7 @@ const plantReducer = (state = initialState, action) => {
         case GET_PLANTS_SUCCESS:
             return {
                 ...state,
-                plants: action.payload,
+                plants: [...action.payload],
                 isGettingAllPlants: false,
                 error: ''
             }

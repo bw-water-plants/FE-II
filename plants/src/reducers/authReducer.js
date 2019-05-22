@@ -29,7 +29,7 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoggingIn: false,
-                userid: action.payload.user.id,
+                userId: action.payload.user.id,
                 error: ''
             }
         case LOGIN_FAILURE:

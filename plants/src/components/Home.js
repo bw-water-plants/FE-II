@@ -1,5 +1,6 @@
 import React from 'react';
 import UserProfile from './UserProfile';
+import PlantsList from './PlantsList';
 
 class Home extends React.Component {
     
@@ -8,6 +9,7 @@ class Home extends React.Component {
             <div>
                 Hi
                 <UserProfile />
+                <PlantsList />
             </div>
         )
     }
