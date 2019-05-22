@@ -26,6 +26,7 @@ export const login = creds => dispatch => {
         .then(res => {
             localStorage.setItem('token', res.data.token)
             localStorage.setItem('id', res.data.user.id)
+            localStorage.setItem('username', res.data.user.username)
             dispatch({ type: LOGIN_SUCCESS, payload: res.data}, console.log(res.data))
         })
         .catch(err => {
@@ -203,3 +204,4 @@ export const deletePlant = plantId => dispatch => {
             dispatch({ type: DELETE_PLANT_FAILURE, payload: err })
         })
 };
+
