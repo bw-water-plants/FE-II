@@ -59,7 +59,7 @@ export const GET_USERS_FAILURE = 'GET_USERS_FAILURE';
 export const getUsers = () => dispatch => {
     dispatch({type: GET_USERS});
     axiosWithAuth()
-        .get("api/users")
+        .get("https://water-my-plants-lambda.herokuapp.com/api/users")
         .then(res => {
             dispatch({ type: GET_USERS_SUCCESS, payload: res.data})
         })
@@ -110,7 +110,7 @@ export const DELETE_USER_FAILURE = 'DELETE_USER_FAILURE';
 export const deleteUsers = userId => dispatch => {
     dispatch({type: DELETE_USER})
     axiosWithAuth()
-        .delete("/api/users/" + userId)
+        .delete("https://water-my-plants-lambda.herokuapp.com/api/users/" + userId)
         .then(res => {
             dispatch({ type: DELETE_USER_SUCCESS, payload: res.data})
         })
@@ -128,7 +128,7 @@ export const CREATE_PLANT_FAILURE = 'CREATE_PLANT_FAILURE';
 export const createPlant = plantObject => dispatch => {
     dispatch({type: CREATE_PLANT})
     axiosWithAuth()
-        .post("/api/plants/", plantObject)
+        .post("https://water-my-plants-lambda.herokuapp.com/api/plants/", plantObject)
         .then(res => {
             dispatch({ type: CREATE_PLANT_SUCCESS, payload: res.data})
         })
@@ -162,7 +162,7 @@ export const GET_SINGLE_PLANT_FAILURE = 'GET_SINGLE_PLANT_FAILURE';
 export const getPlant = plantId => dispatch => {
     dispatch({type: GET_SINGLE_PLANT})
     axiosWithAuth()
-        .get("/api/plants/" + plantId)
+        .get("https://water-my-plants-lambda.herokuapp.com/api/plants/" + plantId)
         .then(res => {
             dispatch({ type: GET_SINGLE_PLANT_SUCCESS, payload: res.data})
         })
@@ -179,7 +179,7 @@ export const UPDATE_PLANT_FAILURE = 'UPDATE_PLANT_FAILURE';
 export const updatePlant = plantId => plantObject => dispatch => {
     dispatch({type: UPDATE_PLANT})
     axiosWithAuth()
-        .put("/api/plants/" + plantId, plantObject)
+        .put("https://water-my-plants-lambda.herokuapp.com/api/plants/" + plantId, plantObject)
         .then(res => {
             dispatch({ type: UPDATE_PLANT_SUCCESS, payload: res.data})
         })
@@ -196,7 +196,7 @@ export const DELETE_PLANT_FAILURE = 'DELETE_PLANT_FAILURE';
 export const deletePlant = plantId => dispatch => {
     dispatch({type: DELETE_PLANT})
     axiosWithAuth()
-        .delete("/api/plants/" + plantId)
+        .delete("https://water-my-plants-lambda.herokuapp.com/api/plants/" + plantId)
         .then(res => {
             dispatch({ type: DELETE_PLANT_SUCCESS, payload: res.data})
         })
