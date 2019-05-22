@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getUser, updateUser} from '../actions/actions';
+import { withRouter } from 'react-router-dom';
 import Loader from "react-loader-spinner";
 
 class UserProfile extends React.Component {
@@ -53,6 +54,18 @@ class UserProfile extends React.Component {
     handleUpdateUser = () => {
         this.props.updateUser(this.props.user.id, this.state.formData)
         .then(this.toggleForm(), this.getUser())
+        .then(() => {
+            this.props.history.push('/protected');
+          });
+    }
+
+    logout() {
+
+        localStorage.clear('id')
+        localStorage.clear('token')
+        localStorage.clear('username')
+        this.props.history.push("/login");
+        
     }
 
     render() {
@@ -63,6 +76,7 @@ class UserProfile extends React.Component {
                     <div>{this.props.user.username}</div>
                     <div>{this.props.user.phoneNumber}</div>
                     <button onClick={() => this.toggleForm()}>Update</button>
+                    <button onClick={() => this.logout()}>Logout</button>
                 </div>
                 :
                 <div>
@@ -94,4 +108,4 @@ const mapStateToProps = state => ({
     user: state.user.user
 })
 
-export default connect(mapStateToProps, { getUser, updateUser })(UserProfile)
+export default connect(mapStateToProps, { getUser, updateUser })(withRouter(UserProfile))
