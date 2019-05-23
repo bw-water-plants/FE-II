@@ -63,9 +63,10 @@ const HeaderNav = styled.div`
 `
 
 function App() {
+
   const isSignedIn = localStorage.getItem('token');
-  const username = localStorage.getItem('username')
-  
+  const username = localStorage.getItem('username')  
+
   return (
     <Router>
       <AppStyles>
@@ -74,15 +75,9 @@ function App() {
             <Link to="/protected"><h1>Water My Plants</h1></Link>
           </div>
           <HeaderNav>
-            {!isSignedIn ? 
-             <div>
-              <Link to="/login">Log In</Link>
-              <Link to="/registration">Sign Up</Link>   
-             </div>
-              : <Link to="/protected">Welcome {username}</Link>  
-
-            }
-          </HeaderNav>
+            <Link to="/login">Log In</Link>
+            <Link to="/registration">Sign Up</Link>            
+            </HeaderNav>
         </HeaderContainer>
                    
           <Route path="/login" component={Login} />

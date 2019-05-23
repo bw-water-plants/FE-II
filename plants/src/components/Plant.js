@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updatePlant, deletePlant } from '../actions/actions';
+import { getPlant, updatePlant, deletePlant } from '../actions/actions';
 import moment from 'moment';
 
 
@@ -11,14 +11,16 @@ class Plant extends React.Component {
         plantid: '',
         isUpdatingPlant: false, 
         formData: {
-            plantName: 'test',
-            dailyWaterTime: 'test',
+            plantName: '',
+            dailyWaterTime: '',
         }
     };
 
     componentDidMount() {
+
         console.log(this.props.location.plantState)
         const plant = this.props.location.plantState
+
         this.setState({
             ...this.state,
             plantid: 1, // NEEDS FIXED plant.id
@@ -55,9 +57,11 @@ class Plant extends React.Component {
 
     handleEditPlant() {
         console.log(this.props);
+
          this.props.updatePlant( this.state.plantid, this.state.formData)
          .then(() => {
             this.props.history.push('/protected');
+
          });
     }
 
@@ -103,4 +107,4 @@ const mapStateToProps = state => ({
     plants: state.plant.plants
 })
 
-export default connect(mapStateToProps, { updatePlant, deletePlant })(Plant);
+export default connect(mapStateToProps, { getPlant, updatePlant, deletePlant })(Plant);
