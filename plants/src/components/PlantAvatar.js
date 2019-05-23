@@ -22,6 +22,7 @@ class PlantAvatar extends React.Component {
 
     avatarPicker = (avatarId) => {
         switch(avatarId) {
+
             case 1:
                 return image1;
             case 2:
@@ -54,6 +55,8 @@ class PlantAvatar extends React.Component {
                 return image15;
             case 16:
                 return image16;
+            default:
+                return image3;
         }
     };
 
