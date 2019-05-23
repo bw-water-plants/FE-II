@@ -72,11 +72,11 @@ class Plant extends React.Component {
 
         return(
             <div>
-                <PlantAvatar plantAvatarId={this.state.plantAvatarId} avatarHeight="100px" /><br />
+                <PlantAvatar avatarId={this.state.plantAvatarId} avatarHeight="100px" /><br />
                 {!this.state.isUpdatingPlant ?
                 <div>
-                    <h3>{this.state.formData.plantName}</h3>
-                    <p>{this.state.formData.dailyWaterTime}</p>
+                    <h3> {this.state.formData.plantName}</h3>
+                    <p>Watering Time: {this.state.formData.dailyWaterTime}</p>
                     <button onClick={() => this.toggleForm()}><i className="fas fa-edit"></i></button>
                     <button onClick={() => this.removePlant(this.state.plantid)}><i className="fas fa-trash-alt"></i></button>
                 </div>

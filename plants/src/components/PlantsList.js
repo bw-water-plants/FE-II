@@ -44,6 +44,9 @@ const PlantLink = styled.div`
     justify-content: center;
     width: 40%;
     text-align: center;
+    font-size: 36px;
+    font-family: 'Amatic SC', cursive;
+    font-weight: bold;
 `
 
 const NewPlantForm = styled.form`
@@ -176,6 +179,19 @@ const AddPlantButton = styled.button`
 }
 `
 
+const WaterTime = styled.div`
+    background-color: hsl(210,80%,42%);
+    width: 75px;
+    color: white;
+    border-radius: 5px;
+    font-size: 12px;
+    padding: 5px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+ "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+ sans-serif;
+    font-weight: normal;
+`
+
 class PlantsList extends React.Component {
 
     state = {
@@ -254,10 +270,10 @@ class PlantsList extends React.Component {
 
         const renderer = ({ hours, minutes, seconds, completed }) => {
             if (completed) {
-                return "Water Me!"
+                return null
             } else {
               // Render a countdown
-              return <span>Water Me In:<br />{hours}:{minutes}:{seconds}</span>;
+              return <WaterTime>Water In:<br />{hours}:{minutes}:{seconds}</WaterTime>;
             }
           };
 
@@ -281,8 +297,9 @@ class PlantsList extends React.Component {
                             <div key={plant.id}>
                                 <PlantAvatar avatarId={plant.plant_avatar_id} avatarHeight="50px" /><br />
                                 {plant.plantName}<br />
-                                {plant.dailyWaterTime}<br />
+                                {/* {plant.dailyWaterTime}<br /> */}
                                 <Countdown date={new Date(currentDate + " " + plant.dailyWaterTime)} renderer={ renderer }/>
+                                
                             </div>
 
                         </Link>
@@ -303,7 +320,7 @@ class PlantsList extends React.Component {
                                     onChange={this.handleChange}
                                     /><br />
                                 <input
-                                    type="text"
+                                    type="time"
                                     name="dailyWaterTime"
                                     value={this.state.newPlant.dailyWaterTime}
                                     placeholder="Water Time"

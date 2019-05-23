@@ -118,13 +118,14 @@ class UserProfile extends React.Component {
                 
             {!this.state.updatingUser ? 
                 <UserWrapper>
-                    <UserButtonsWrapper>
-                        <UserButton onClick={() => this.toggleForm()}>Update User Info</UserButton>
-                        <UserButton onClick={() => this.logout()}>Logout</UserButton>
-                    </UserButtonsWrapper>
+
                     <UserInfo>
                         <Info><strong>Username: </strong>{this.props.user.username}</Info>
                         <Info><strong>Phone Number: </strong>{this.props.user.phoneNumber}</Info>
+                        <UserButtonsWrapper>
+                            <UserButton onClick={() => this.toggleForm()}>Update User Info</UserButton>
+                            <UserButton onClick={() => this.logout()}>Logout</UserButton>
+                        </UserButtonsWrapper>
                     </UserInfo>
                 </UserWrapper>
                 
