@@ -129,7 +129,8 @@ class Registration extends React.Component {
             password: '',
             phoneNumber: '',
             avatar_id: '',
-            useTwilio: false
+            useTwilio: false,
+            timeZone: 'American/Chicago'
         }
     }
 
@@ -280,6 +281,7 @@ class Registration extends React.Component {
 }
 const mapStateToProps = state => ({
     isRegistering: state.auth.isRegistering,
+    user: state.user.user
 })
 
-export default connect(mapStateToProps, { registration, login })(Registration)
+export default connect(mapStateToProps, { registration, login, })(Registration)

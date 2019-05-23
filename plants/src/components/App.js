@@ -68,12 +68,12 @@ const HeaderNav = styled.div`
 const AvatarCircle =  styled.div`
     background-color: white;
     border-radius: 100px;
-    width: 30px;
+    width: 45px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 12px 10px 10px 10px;
-    height: 30px;
+    height: 45px;
 `
 
 const SameLineWelcome = styled.div`

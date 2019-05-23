@@ -56,6 +56,7 @@ class UserProfile extends React.Component {
             username: '',
             phoneNumber: '',
             useTwilio: ''
+            
         }
     }
 
@@ -65,7 +66,7 @@ class UserProfile extends React.Component {
     }   
 
     getUser() { 
-    console.log(this.state.userId)
+
         this.props.getUser(this.state.userId)
             .then(() => {
             this.setState({

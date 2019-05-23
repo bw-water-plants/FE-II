@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getPlants, createPlant } from '../actions/actions';
+import { getPlants, createPlant, createTwilio } from '../actions/actions';
 import Loader from "react-loader-spinner";
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
@@ -221,6 +221,18 @@ class PlantsList extends React.Component {
 
     addPlant() {
         this.props.createPlant(this.state.newPlant)
+
+        if(this.props.user.useTwilio){
+            const twilioObject = {
+                "plantName": this.state.newPlant.plantName,
+                "timeZone": "America/Chicago",
+                "time": "5-21-2019 11:30am",
+                "phoneNumber": "5551234567",
+                "user_id": this.props.user.user_id
+            }
+
+            this.props.createTwilio(twilioObject)
+        }
     }
     
     toggleAddPlantForm() {
@@ -267,6 +279,8 @@ class PlantsList extends React.Component {
     }
 
     render() {
+
+
 
         const renderer = ({ hours, minutes, seconds, completed }) => {
             if (completed) {
@@ -382,8 +396,9 @@ class PlantsList extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    plants: state.plant.plants
+    plants: state.plant.plants,
+    user: state.user.user
 })
 
 
-export default connect(mapStateToProps, { getPlants, createPlant })(PlantsList)
+export default connect(mapStateToProps, { getPlants, createPlant, createTwilio })(PlantsList)
