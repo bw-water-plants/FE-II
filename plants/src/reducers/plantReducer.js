@@ -2,6 +2,9 @@ import {
     GET_PLANTS,
     GET_PLANTS_SUCCESS,
     GET_PLANTS_FAILURE,
+    GET_PLANTS_WID,
+    GET_PLANTS_WID_SUCCESS,
+    GET_PLANTS_WID_FAILURE,
     GET_SINGLE_PLANT,
     GET_SINGLE_PLANT_SUCCESS,
     GET_SINGLE_PLANT_FAILURE,
@@ -19,9 +22,8 @@ const initialState = {
 
 //plant state
     plants: [],
-    plant: [],
     isGettingPlant: false,
-    isGettingAllPlants: false,
+    isGettingPlantsWid: false,
     isUpdatingPlant: false,
     isDeletingPlant: false,
 }
@@ -37,7 +39,7 @@ const plantReducer = (state = initialState, action) => {
         case GET_PLANTS_SUCCESS:
             return {
                 ...state,
-                plants: [...action.payload],
+                plants: action.payload,
                 isGettingAllPlants: false,
                 error: ''
             }
@@ -45,6 +47,25 @@ const plantReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isGettingAllPlants: false,
+                error: action.payload
+            }
+        case GET_PLANTS_WID:
+            return {
+                ...state,
+                isGettingPlantsWid: true,
+                error: ''
+            }
+        case GET_PLANTS_WID_SUCCESS:
+            return {
+                ...state,
+                plants: action.payload,
+                isGettingPlantsWid: false,
+                error: ''
+            }
+        case GET_PLANTS_WID_FAILURE:
+            return {
+                ...state,
+                isGettingPlantsWid: false,
                 error: action.payload
             }
         case GET_SINGLE_PLANT:

@@ -65,6 +65,7 @@ const HeaderNav = styled.div`
 function App() {
   const isSignedIn = localStorage.getItem('token');
   const username = localStorage.getItem('username')
+  
   return (
     <Router>
       <AppStyles>
@@ -84,10 +85,10 @@ function App() {
           </HeaderNav>
         </HeaderContainer>
                    
-        <Route path="/login" component={Login} />
-        <Route path="/registration" component={Registration} />
-        <PrivateRoute exact path="/protected" component={Home} />
-        <PrivateRoute path="/plant" component={Plant} />
+          <Route path="/login" component={Login} />
+          <Route path="/registration" component={Registration} />
+          <PrivateRoute exact path="/protected" component={Home} />
+          {/* <PrivateRoute exact path="/plant/:plantid" component={Plant} /> */}
         </AppStyles>
       
     </Router>

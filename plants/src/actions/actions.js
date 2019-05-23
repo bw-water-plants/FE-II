@@ -15,6 +15,8 @@ import { axiosWithAuth } from '../axiosWithAuth';
 //updatePlant(plantId, plantObj)
 //deletePlant(plantId)
 
+const url = "https://water-my-plants-lambda.herokuapp.com/api";
+
 export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
@@ -22,7 +24,7 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const login = creds => dispatch => {
     dispatch({type: LOGIN_START})
     return axios 
-        .post("https://water-my-plants-lambda.herokuapp.com/api/auth/login", creds)
+        .post(url + "/auth/login", creds)
         .then(res => {
             localStorage.setItem('token', res.data.token)
             localStorage.setItem('id', res.data.user.id)
@@ -42,7 +44,7 @@ export const REGISTRATION_FAILURE = 'REGISTRATION_FAILURE';
 export const registration = creds => dispatch => {
     dispatch({type: REGISTRATION_START})
     return axios 
-        .post("https://water-my-plants-lambda.herokuapp.com/api/auth/register", creds)
+        .post(url + "/auth/register", creds)
         .then(res => {
             dispatch({ type: REGISTRATION_SUCCESS, payload: res.data})
         })
@@ -59,7 +61,7 @@ export const GET_USERS_FAILURE = 'GET_USERS_FAILURE';
 export const getUsers = () => dispatch => {
     dispatch({type: GET_USERS});
     axiosWithAuth()
-        .get("https://water-my-plants-lambda.herokuapp.com/api/users")
+        .get(url + "/users")
         .then(res => {
             dispatch({ type: GET_USERS_SUCCESS, payload: res.data})
         })
@@ -76,7 +78,7 @@ export const GET_SINGLE_USER_FAILURE = 'GET_SINGLE_USER_FAILURE';
 export const getUser = userId => dispatch => {
     dispatch({type: GET_SINGLE_USER})
     return axiosWithAuth()
-        .get("https://water-my-plants-lambda.herokuapp.com/api/users/" + userId)
+        .get(url + "/users/" + userId)
         .then(res =>  {
             dispatch({ type: GET_SINGLE_USER_SUCCESS, payload: res.data} )
         })
@@ -93,7 +95,7 @@ export const UPDATE_USER_FAILURE = 'UPDATE_USER_FAILURE';
 export const updateUser = (userId, userObject) => dispatch => {
     dispatch({type: UPDATE_USER})
     return axiosWithAuth()
-        .put("https://water-my-plants-lambda.herokuapp.com/api/users/" + userId, userObject)
+        .put(url + "/users/" + userId, userObject)
         .then(res => {
             dispatch({ type: UPDATE_USER_SUCCESS, payload: res.data})
         })
@@ -110,7 +112,7 @@ export const DELETE_USER_FAILURE = 'DELETE_USER_FAILURE';
 export const deleteUsers = userId => dispatch => {
     dispatch({type: DELETE_USER})
     axiosWithAuth()
-        .delete("https://water-my-plants-lambda.herokuapp.com/api/users/" + userId)
+        .delete(url + "/users/" + userId)
         .then(res => {
             dispatch({ type: DELETE_USER_SUCCESS, payload: res.data})
         })
@@ -128,7 +130,7 @@ export const CREATE_PLANT_FAILURE = 'CREATE_PLANT_FAILURE';
 export const createPlant = plantObject => dispatch => {
     dispatch({type: CREATE_PLANT})
     axiosWithAuth()
-        .post("https://water-my-plants-lambda.herokuapp.com/api/plants/", plantObject)
+        .post(url + "/plants/", plantObject)
         .then(res => {
             dispatch({ type: CREATE_PLANT_SUCCESS, payload: res.data})
         })
@@ -142,15 +144,32 @@ export const GET_PLANTS_SUCCESS = 'GET_PLANTS_SUCCESS';
 export const GET_PLANTS_FAILURE = 'GET_PLANTS_FAILURE';
 
 
-export const getPlants = () => dispatch => {
+export const getAllPlants = () => dispatch => {
     dispatch({type: GET_PLANTS})
     axiosWithAuth()
-        .get("https://water-my-plants-lambda.herokuapp.com/api/plants/")
+        .get(url + "/plants/")
         .then(res => {
             dispatch({ type: GET_PLANTS_SUCCESS, payload: res.data})
         })
         .catch(err => {
             dispatch({ type: GET_PLANTS_FAILURE, payload: err })
+        })
+};
+
+export const GET_PLANTS_WID = 'GET_PLANTS_WID';
+export const GET_PLANTS_WID_SUCCESS = 'GET_PLANTS_WID_SUCCESS';
+export const GET_PLANTS_WID_FAILURE = 'GET_PLANTS_WID_FAILURE';
+
+
+export const getPlants = userId => dispatch => {
+    dispatch({type: GET_PLANTS_WID})
+    axiosWithAuth()
+        .get(url + "/users/" + userId + "/plants")
+        .then(res => {
+            dispatch({ type: GET_PLANTS_WID_SUCCESS, payload: res.data})
+        })
+        .catch(err => {
+            dispatch({ type: GET_PLANTS_WID_FAILURE, payload: err })
         })
 };
 
@@ -162,7 +181,7 @@ export const GET_SINGLE_PLANT_FAILURE = 'GET_SINGLE_PLANT_FAILURE';
 export const getPlant = plantId => dispatch => {
     dispatch({type: GET_SINGLE_PLANT})
     axiosWithAuth()
-        .get("https://water-my-plants-lambda.herokuapp.com/api/plants/" + plantId)
+        .get(url + "/plants/" + plantId)
         .then(res => {
             dispatch({ type: GET_SINGLE_PLANT_SUCCESS, payload: res.data})
         })
@@ -180,7 +199,7 @@ export const updatePlant = plantId => plantObject => dispatch => {
     dispatch({type: UPDATE_PLANT})
 
     axiosWithAuth()
-        .put("https://water-my-plants-lambda.herokuapp.com/api/plants/" + plantId, plantObject)
+        .put(url + "/plants/" + plantId, plantObject)
         .then(res => {
             dispatch({ type: UPDATE_PLANT_SUCCESS, payload: res.data})
         })
@@ -197,7 +216,7 @@ export const DELETE_PLANT_FAILURE = 'DELETE_PLANT_FAILURE';
 export const deletePlant = plantId => dispatch => {
     dispatch({type: DELETE_PLANT})
     axiosWithAuth()
-        .delete("https://water-my-plants-lambda.herokuapp.com/api/plants/" + plantId)
+        .delete(url + "/plants/" + plantId)
         .then(res => {
             dispatch({ type: DELETE_PLANT_SUCCESS, payload: res.data})
         })
