@@ -5,6 +5,18 @@ import Loader from "react-loader-spinner";
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+import image7 from '../assets/7.png';
+import image8 from '../assets/8.png';
+import image9 from '../assets/9.png';
+import image10 from '../assets/10.png';
+import image11 from '../assets/11.png';
+import image12 from '../assets/12.png';
+import image13 from '../assets/13.png';
+import image14 from '../assets/14.png';
+import image15 from '../assets/15.png';
+import image16 from '../assets/16.png';
+
+
 class PlantsList extends React.Component {
 
     state = {
@@ -12,7 +24,8 @@ class PlantsList extends React.Component {
         newPlant: {
             plantName: '',
             dailyWaterTime: '',
-            user_id: localStorage.getItem('id')
+            user_id: localStorage.getItem('id'),
+            plant_avatar_id: ''
         }
     }
 
@@ -42,6 +55,42 @@ class PlantsList extends React.Component {
         });
     };
 
+    handleOptionChange = e => {
+        this.setState({
+            ...this.state,
+          newPlant: {
+              ...this.state.newPlant,
+            plant_avatar_id: e.target.value
+            }
+        });
+    };
+
+    avatarPicker = avatarId => {
+        switch(avatarId) {
+            case 7:
+                return image7;
+            case 8:
+                return image8;
+            case 9:
+                return image9;
+            case 10:
+                return image10;
+            case 11:
+                return image11;
+            case 12:
+                return image12;
+            case 13:
+                return image13;
+            case 14:
+                return image14;
+            case 15:
+                return image15;
+            case 16:
+                return image16;
+
+        }
+    }
+
     render() {
 
         const userId = localStorage.getItem('id');
@@ -55,9 +104,9 @@ class PlantsList extends React.Component {
                         plantState: plant
                       }}>
                         <div key={plant.id}>
+                            <img src={this.avatarPicker(plant.plant_avatar_id)} height="50px"/><br />
                             {plant.plantName}<br />
                             {plant.dailyWaterTime}
-                        
                         </div>
                     </Link>
                 ) )}
@@ -80,7 +129,19 @@ class PlantsList extends React.Component {
                                 placeholder="Water Time"
                                 onChange={this.handleChange}
                                 /><br />
-                            <button onClick={() => this.addPlant()}>Submit</ button>
+                            <div>
+                                    <img src={image7} height="50px" /><br /><input type="radio" value="7" onChange={this.handleOptionChange} checked={this.state.newPlant.plant_avatar_id === '7'} /><br />
+                                    <img src={image8} height="50px" /><br /><input type="radio" value="8" onChange={this.handleOptionChange} checked={this.state.newPlant.plant_avatar_id === '8'} /><br />
+                                    <img src={image9} height="50px" /><br /><input type="radio" value="9" onChange={this.handleOptionChange} checked={this.state.newPlant.plant_avatar_id === '9'} /><br />
+                                    <img src={image10} height="50px" /><br /><input type="radio" value="10" onChange={this.handleOptionChange} checked={this.state.newPlant.plant_avatar_id === '10'} /><br />
+                                    <img src={image11} height="50px" /><br /><input type="radio" value="11" onChange={this.handleOptionChange} checked={this.state.newPlant.plant_avatar_id === '11'} /><br />
+                                    <img src={image12} height="50px" /><br /><input type="radio" value="12" onChange={this.handleOptionChange} checked={this.state.newPlant.plant_avatar_id === '12'} /><br />
+                                    <img src={image13} height="50px" /><br /><input type="radio" value="13" onChange={this.handleOptionChange} checked={this.state.newPlant.plant_avatar_id === '13'} /><br />
+                                    <img src={image14} height="50px" /><br /><input type="radio" value="14" onChange={this.handleOptionChange} checked={this.state.newPlant.plant_avatar_id === '14'} /><br />
+                                    <img src={image15} height="50px" /><br /><input type="radio" value="15" onChange={this.handleOptionChange} checked={this.state.newPlant.plant_avatar_id === '15'} /><br />
+                                    <img src={image16} height="50px" /><br /><input type="radio" value="16" onChange={this.handleOptionChange} checked={this.state.newPlant.plant_avatar_id === '16'} /><br />               
+                            </div>
+                             <button onClick={() => this.addPlant()}>Submit</ button>
                             <button onClick={() => this.toggleAddPlantForm()}>Cancel</button>
                         </form>
                     </div>
