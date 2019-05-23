@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getPlant, updatePlant, deletePlant } from '../actions/actions';
-
+import PlantAvatar from './PlantAvatar';
 
 import moment from 'moment';
 
@@ -26,6 +26,7 @@ class Plant extends React.Component {
         this.setState({
             ...this.state,
             plantid: plant.id,
+            plantAvatarId: plant.plant_avatar_id,
             formData: {
                 plantName: plant.plantName,
                 dailyWaterTime: plant.dailyWaterTime
@@ -71,9 +72,9 @@ class Plant extends React.Component {
 
         return(
             <div>
+                <PlantAvatar plantAvatarId={this.state.plantAvatarId} avatarHeight="100px" /><br />
                 {!this.state.isUpdatingPlant ?
                 <div>
-
                     <h3>{this.state.formData.plantName}</h3>
                     <p>{this.state.formData.dailyWaterTime}</p>
                     <button onClick={() => this.toggleForm()}><i className="fas fa-edit"></i></button>
