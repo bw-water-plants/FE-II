@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { login } from '../actions/actions';
 import Loader from "react-loader-spinner";
 import styled from 'styled-components';
+import { createBrowserHistory } from 'history'
+
+const history = createBrowserHistory();
 
 const LoginStyles = styled.div`
     width: 275px;
@@ -116,6 +119,7 @@ class Login extends React.Component {
         this.props.login(this.state.credentials)
         .then(() => {
             this.props.history.push('/protected');
+            history.go(0)
           });
     };
 

@@ -113,6 +113,7 @@ function App() {
         </HeaderContainer>
                    
           <Route path="/login" component={Login} />
+          <Route exact path="/" component={Login} />
           <Route path="/registration" component={Registration} />
           <PrivateRoute exact path="/protected" component={Home} />
           <Route
