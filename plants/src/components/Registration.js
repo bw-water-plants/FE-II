@@ -50,7 +50,8 @@ class Registration extends React.Component {
         credentials: {
             username: '',
             password: '',
-            phoneNumber: ''
+            phoneNumber: '',
+            avatar_id: '',
         }
     }
 
@@ -72,6 +73,15 @@ class Registration extends React.Component {
               });
           });
     };
+
+    handleOptionChange = e => {
+        this.setState({
+          credentials: {
+            avatar_id: e.target.value
+            }
+        });
+    };
+      
 
     render(){
         return (
@@ -98,6 +108,37 @@ class Registration extends React.Component {
                         value={this.state.credentials.phoneNumber}
                         onChange={this.handleChange}
                     />
+                    <div>
+                        <div>
+                            <img src="https://image.flaticon.com/icons/png/128/628/628297.png" height="50px" /><br />
+                            <input 
+                                type="radio"
+                                value="1"
+                                onChange={this.handleOptionChange}
+                                checked={this.state.credentials.avatar_id === '1'} 
+                            />
+                        </div>
+                        <div>
+                            <img src="https://image.flaticon.com/icons/png/128/628/628297.png" height="50px" /><br />
+                            <input 
+                                type="radio"
+                                value="2"
+                                onChange={this.handleOptionChange}
+                                checked={this.state.credentials.avatar_id === '2'} 
+                            />
+                        </div>
+                        <div>
+                            <img src="https://image.flaticon.com/icons/png/128/628/628297.png" height="50px" /><br />
+                            <input 
+                                type="radio"
+                                value="3"
+                                onChange={this.handleOptionChange}
+                                checked={this.state.credentials.avatar_id === '3'} 
+                            />
+                        </div>
+                    </div>
+
+
                     <button>
                         {this.props.isRegistering 
                             ? <Loader type="ThreeDots" color="#00BFFF" height="25" width="50" /> 
@@ -112,4 +153,5 @@ class Registration extends React.Component {
 const mapStateToProps = state => ({
     isRegistering: state.auth.isRegistering,
 })
+
 export default connect(mapStateToProps, { registration, login })(Registration)
