@@ -26,7 +26,11 @@ const PlantWrapper = styled.div`
     display: flex;
     justify-content: space-around;
     width: 95%;
-    margin: 0 auto 20px;
+    margin: 30px auto;
+    
+    a {
+        text-decoration: none;
+    }
 `
 
 const NewPlantForm = styled.form`
@@ -104,7 +108,7 @@ const NewPlantButton = styled.button`
 `
 
 const AddPlantButton = styled.button`
-    margin: 0 auto;
+    
 `
 
 class PlantsList extends React.Component {
@@ -266,7 +270,9 @@ class PlantsList extends React.Component {
                         </NewPlantForm>
                         
 
-                : <AddPlantButton onClick={() => this.toggleAddPlantForm()}>Add New Plant</AddPlantButton>}
+                : 
+                
+                <AddPlantButton onClick={() => this.toggleAddPlantForm()}>Add New Plant</AddPlantButton>}
                 
             </NewPlantWrapper>
         )
