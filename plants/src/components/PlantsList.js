@@ -262,7 +262,7 @@ class PlantsList extends React.Component {
                             plantState: plant
                         }}>
                             <div key={plant.id}>
-                                <PlantAvatar plantAvatarId={plant.plant_avatar_id} avatarHeight="50px" /><br />
+                                <PlantAvatar avatarId={plant.plant_avatar_id} avatarHeight="50px" /><br />
                                 {plant.plantName}<br />
                                 {plant.dailyWaterTime}
                                 <Countdown date={new Date(currentDate + " " + plant.dailyWaterTime)} renderer={ renderer }/>,

@@ -12,6 +12,7 @@ import styled from 'styled-components';
 import plantcacti from '../assets/plant-cacti2.png';
 import PlantsList from './PlantsList';
 import Plant from './Plant';
+import PlantAvatar from './PlantAvatar';
 
 const AppStyles = styled.div`
 
@@ -81,8 +82,13 @@ function App() {
             <Link to="/protected"><h1>Water My Plants</h1></Link>
           </div>
           <HeaderNav>
-            <Link to="/login">Log In</Link>
-            <Link to="/registration">Sign Up</Link>            
+          {!isSignedIn ? 
+            <>
+              <Link to="/login">Log In</Link>
+              <Link to="/registration">Sign Up</Link>
+            </>  
+              : <Link to="/protected">Welcome {username}</Link>  
+            }     
             </HeaderNav>
         </HeaderContainer>
                    
