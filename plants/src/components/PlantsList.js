@@ -28,8 +28,13 @@ const PlantWrapper = styled.div`
     width: 95%;
     margin: 30px auto;
     
+    flex-wrap: wrap;
+    
     a {
+        margin: 0 auto;
         text-decoration: none;
+        width: 33%;
+        padding-bottom: 20px;
     }
 `
 
