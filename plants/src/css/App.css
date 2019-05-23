@@ -31,7 +31,7 @@
   box-sizing: border-box;
 }
 /* buttons */
-:root {
+/* :root {
   --text-color: hsla(210, 50%, 85%, 1);
   --shadow-color: hsla(210, 40%, 52%, .4);
   --btn-color: hsl(210, 80%, 42%);
@@ -47,10 +47,10 @@ button {
   
   /* margin: 10px auto 0; */
   
-  font-family: 'Amatic SC', cursive;
+  /* font-family: 'Amatic SC', cursive;
   font-weight: 900;
   /* text-transform: uppercase; */
-  font-size: 25px;  
+  /* font-size: 25px;  
   color: white;
   
   background-color: var(--btn-color);
@@ -58,9 +58,9 @@ button {
   border-radius: 20px; 
   z-index: 0;  
   overflow: hidden;   
-}
+} */ 
 
-.right, .left {
+/* .right, .left {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -71,9 +71,9 @@ button {
 }
 .left {
   right: 66%;
-}
+} */
 /* bubbles */
-button::before {
+/* button::before {
   content: '';
   pointer-events: none;
   opacity: .6;
@@ -97,4 +97,4 @@ button::before {
   to {
     transform: translate(0, -66.666%);
   }
-}
+} */ 
