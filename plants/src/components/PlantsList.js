@@ -4,6 +4,7 @@ import { getPlants, createPlant } from '../actions/actions';
 import Loader from "react-loader-spinner";
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import PlantAvatar from './PlantAvatar';
 
 import image7 from '../assets/7.png';
 import image8 from '../assets/8.png';
@@ -104,7 +105,7 @@ class PlantsList extends React.Component {
                         plantState: plant
                       }}>
                         <div key={plant.id}>
-                            <img src={this.avatarPicker(plant.plant_avatar_id)} height="50px"/><br />
+                            <PlantAvatar plantAvatarId={plant.plant_avatar_id} avatarHeight="50px" /><br />
                             {plant.plantName}<br />
                             {plant.dailyWaterTime}
                         </div>

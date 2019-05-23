@@ -83,7 +83,9 @@ class Registration extends React.Component {
 
     handleOptionChange = e => {
         this.setState({
+            ...this.state,
           credentials: {
+              ...this.state.credentials,
             avatar_id: e.target.value
             }
         });
