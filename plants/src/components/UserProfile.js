@@ -8,6 +8,7 @@ import styled from 'styled-components';
 const UserInfoStyles = styled.div`
 
 `
+
 const UserInfo = styled.div`
 
 `
@@ -17,11 +18,12 @@ const UserWrapper = styled.div`
 `
 
 const UserButtonsWrapper = styled.div`
-
+    float: right;
 `
 
-const Info = styled.div`
-
+const UserButton = styled.button`
+    border: none;
+    background-color: white;
 `
 
 class UserProfile extends React.Component {
@@ -95,13 +97,13 @@ class UserProfile extends React.Component {
             {!this.state.updatingUser ? 
                 <UserWrapper>
                     <UserButtonsWrapper>
-                        <button onClick={() => this.toggleForm()}>Update</button>
-                        <button onClick={() => this.logout()}>Logout</button>
+                        <UserButton onClick={() => this.toggleForm()}>Update</UserButton>
+                        <UserButton onClick={() => this.logout()}>Logout</UserButton>
                     </UserButtonsWrapper>
-                    <Info>
+                    <UserInfo>
                         <div><strong>Username: </strong>{this.props.user.username}</div>
                         <div><strong>Phone Number: </strong>{this.props.user.phoneNumber}</div>
-                    </Info>
+                    </UserInfo>
                 </UserWrapper>
                 
                 :
