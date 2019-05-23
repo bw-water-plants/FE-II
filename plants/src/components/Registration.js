@@ -129,6 +129,7 @@ class Registration extends React.Component {
             password: '',
             phoneNumber: '',
             avatar_id: '',
+            useTwilio: false
         }
     }
 
@@ -160,7 +161,18 @@ class Registration extends React.Component {
             }
         });
     };
-      
+
+    handleCheckboxChange = event => {
+
+
+        this.setState({ 
+            ...this.state,
+            credentials: {
+                ...this.state.credentials,
+              useTwilio: event.target.checked
+              }
+         }) 
+    }
 
     render(){
         return (
@@ -186,6 +198,12 @@ class Registration extends React.Component {
                         placeholder="Phone Number"
                         value={this.state.credentials.phoneNumber}
                         onChange={this.handleChange}
+                    /><br />
+                    Use Twilio: <input 
+                        type="checkbox"
+                        name="useTwilio"
+                        checked={this.state.credentials.useTwilio}
+                        onChange={this.handleCheckboxChange }
                     />
                     <AvatarIconsWrapper>
                         <IconBox>
