@@ -144,7 +144,7 @@ export const GET_PLANTS_SUCCESS = 'GET_PLANTS_SUCCESS';
 export const GET_PLANTS_FAILURE = 'GET_PLANTS_FAILURE';
 
 
-export const getPlants = () => dispatch => {
+export const getAllPlants = () => dispatch => {
     dispatch({type: GET_PLANTS})
     axiosWithAuth()
         .get(url + "/plants/")
@@ -153,6 +153,23 @@ export const getPlants = () => dispatch => {
         })
         .catch(err => {
             dispatch({ type: GET_PLANTS_FAILURE, payload: err })
+        })
+};
+
+export const GET_PLANTS_WID = 'GET_PLANTS_WID';
+export const GET_PLANTS_WID_SUCCESS = 'GET_PLANTS_WID_SUCCESS';
+export const GET_PLANTS_WID_FAILURE = 'GET_PLANTS_WID_FAILURE';
+
+
+export const getPlants = userId => dispatch => {
+    dispatch({type: GET_PLANTS_WID})
+    axiosWithAuth()
+        .get(url + "/users/" + userId + "/plants")
+        .then(res => {
+            dispatch({ type: GET_PLANTS_WID_SUCCESS, payload: res.data})
+        })
+        .catch(err => {
+            dispatch({ type: GET_PLANTS_WID_FAILURE, payload: err })
         })
 };
 

@@ -16,8 +16,7 @@ class PlantsList extends React.Component {
     }
 
     componentDidMount() {
-       this.props.getPlants()
-
+       this.props.getPlants(localStorage.getItem('id'))
     }
 
     handleChange = e => {
@@ -44,17 +43,18 @@ class PlantsList extends React.Component {
     render() {
         console.log(this.props.plants)
         const userId = localStorage.getItem('id');
-        const myPlants = this.props.plants.filter(plant => (
-            plant.user_id = userId
-        ))
+
 
         return (
             <div>
-                {myPlants.map(plant =>(
-                    <div key={plant.id}>
-                        {plant.plantName}
-                        {plant.dailyWaterTime}
-                    </div>
+                {this.props.plants.map(plant =>(
+                    <button>
+                        <div key={plant.id}>
+                            {plant.plantName}<br />
+                            {plant.dailyWaterTime}
+                        
+                        </div>
+                    </button>
                 ) )}
 
                 {this.state.isAddingPlant ? 
@@ -77,7 +77,7 @@ class PlantsList extends React.Component {
                         </form>
                     </div>
 
-                : <button onClick={() => this.toggleAddPlantForm()}>Add Plant</button>}
+                : <button onClick={() => this.toggleAddPlantForm()}>Add New Plant</button>}
                 
             </div>
         )

@@ -10,7 +10,8 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 import plantcacti from '../assets/plant-cacti2.png';
-
+import PlantsList from './PlantsList';
+import Plant from './Plant';
 
 const AppStyles = styled.div`
 
@@ -64,6 +65,7 @@ const HeaderNav = styled.div`
 function App() {
   const isSignedIn = localStorage.getItem('token');
   const username = localStorage.getItem('username')
+  
   return (
     <Router>
       <AppStyles>
@@ -83,10 +85,10 @@ function App() {
           </HeaderNav>
         </HeaderContainer>
                    
-        <Route path="/login" component={Login} />
-        <Route path="/registration" component={Registration} />
-        <PrivateRoute exact path="/protected" component={Home} />
-
+          <Route path="/login" component={Login} />
+          <Route path="/registration" component={Registration} />
+          <PrivateRoute exact path="/protected" component={Home} />
+          {/* <PrivateRoute exact path="/plant/:plantid" component={Plant} /> */}
         </AppStyles>
       
     </Router>
