@@ -32,12 +32,18 @@ const HeaderContainer = styled.div`
     a {
       text-decoration: none;
       color: white;      
-      text-shadow: 0 0 10px #3F7A1A;    
+      text-shadow: 0 0 10px #538b53;    
       
       
     } 
     h1 {
         font-size: 50px;
+        text-shadow:
+          -1px -1px 0 #000,
+          1px -1px 0 #000,
+          -1px 1px 0 #000,
+          1px 1px 0 #000;
+
         @media(min-width: 800px) {
           font-size: 100px;
         }

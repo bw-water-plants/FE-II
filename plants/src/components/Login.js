@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const LoginStyles = styled.div`
     width: 275px;
-    height: 250px;
+    height: 240px;
     background-color: whitesmoke;
     margin: 50px auto;
     border-radius: 15px;
@@ -49,7 +49,8 @@ const LoginButton = styled.button`
     border: 1px solid hsla(210, 50%, 85%, 1);
     background: none;
     cursor: pointer;
-    
+    width: 60%;
+    margin: 20px auto;
     /* margin: 10px auto 0; */
     
     font-family: 'Amatic SC', cursive;
