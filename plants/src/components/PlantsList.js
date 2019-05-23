@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getPlants, createPlant } from '../actions/actions';
 import Loader from "react-loader-spinner";
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 class PlantsList extends React.Component {
 
@@ -17,6 +18,7 @@ class PlantsList extends React.Component {
 
     componentDidMount() {
        this.props.getPlants(localStorage.getItem('id'))
+   
     }
 
     handleChange = e => {
@@ -41,20 +43,23 @@ class PlantsList extends React.Component {
     };
 
     render() {
-        console.log(this.props.plants)
+
         const userId = localStorage.getItem('id');
 
 
         return (
             <div>
                 {this.props.plants.map(plant =>(
-                    <button>
+                    <Link to={{
+                        pathname: '/plant',
+                        plantState: plant
+                      }}>
                         <div key={plant.id}>
                             {plant.plantName}<br />
                             {plant.dailyWaterTime}
                         
                         </div>
-                    </button>
+                    </Link>
                 ) )}
 
                 {this.state.isAddingPlant ? 
@@ -65,15 +70,18 @@ class PlantsList extends React.Component {
                                 type="text"
                                 name="plantName"
                                 value={this.state.newPlant.plantName}
+                                placeholder="Plant Name"
                                 onChange={this.handleChange}
                                 /><br />
                             <input
                                 type="text"
                                 name="dailyWaterTime"
                                 value={this.state.newPlant.dailyWaterTime}
+                                placeholder="Water Time"
                                 onChange={this.handleChange}
                                 /><br />
                             <button onClick={() => this.addPlant()}>Submit</ button>
+                            <button onClick={() => this.toggleAddPlantForm()}>Cancel</button>
                         </form>
                     </div>
 
