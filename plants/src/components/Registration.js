@@ -4,6 +4,13 @@ import { registration, login } from '../actions/actions';
 import Loader from "react-loader-spinner";
 import styled from 'styled-components';
 
+import image1 from '../assets/1.png';
+import image2 from '../assets/2.png';
+import image3 from '../assets/3.png';
+import image4 from '../assets/4.png';
+import image5 from '../assets/5.png';
+import image6 from '../assets/6.png';
+
 const SignUpStyles = styled.div`
     width: 275px;
     height: 300px;
@@ -110,7 +117,7 @@ class Registration extends React.Component {
                     />
                     <div>
                         <div>
-                            <img src="https://image.flaticon.com/icons/png/128/628/628297.png" height="50px" /><br />
+                            <img src={image1} height="50px" /><br />
                             <input 
                                 type="radio"
                                 value="1"
@@ -119,7 +126,7 @@ class Registration extends React.Component {
                             />
                         </div>
                         <div>
-                            <img src="https://image.flaticon.com/icons/png/128/628/628297.png" height="50px" /><br />
+                            <img src={image2} height="50px" /><br />
                             <input 
                                 type="radio"
                                 value="2"
@@ -128,12 +135,39 @@ class Registration extends React.Component {
                             />
                         </div>
                         <div>
-                            <img src="https://image.flaticon.com/icons/png/128/628/628297.png" height="50px" /><br />
+                            <img src={image3} height="50px" /><br />
                             <input 
                                 type="radio"
                                 value="3"
                                 onChange={this.handleOptionChange}
                                 checked={this.state.credentials.avatar_id === '3'} 
+                            />
+                        </div>
+                        <div>
+                            <img src={image4} height="50px" /><br />
+                            <input 
+                                type="radio"
+                                value="4"
+                                onChange={this.handleOptionChange}
+                                checked={this.state.credentials.avatar_id === '4'} 
+                            />
+                        </div>
+                        <div>
+                            <img src={image5} height="50px" /><br />
+                            <input 
+                                type="radio"
+                                value="5"
+                                onChange={this.handleOptionChange}
+                                checked={this.state.credentials.avatar_id === '5'} 
+                            />
+                        </div>
+                        <div>
+                            <img src={image6} height="50px" /><br />
+                            <input 
+                                type="radio"
+                                value="6"
+                                onChange={this.handleOptionChange}
+                                checked={this.state.credentials.avatar_id === '6'} 
                             />
                         </div>
                     </div>
