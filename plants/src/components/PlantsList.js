@@ -25,13 +25,24 @@ const NewPlantWrapper = styled.div`
 
 const PlantWrapper = styled.div`
     display: flex;
-    justify-content: space-around;
-    width: 95%;
-    margin: 30px auto;
+    justify-content: space-between;
+    /* justify-content: center; */
     
-    a {
-        text-decoration: none;
+    width: 100%;
+    margin: 30px auto;
+    flex-wrap: wrap;
+    
+    
+    a {        
+        text-decoration: none;        
+        padding-bottom: 20px;
     }
+`
+
+const PlantLink = styled.div`
+    display: flex;
+    justify-content: center;
+    width: 30%;
 `
 
 const NewPlantForm = styled.form`
@@ -253,10 +264,10 @@ class PlantsList extends React.Component {
         console.log(currentDate)
 
         return (
-
             <NewPlantWrapper>
                 <PlantWrapper>
                     {this.props.plants.map(plant =>(
+                        <PlantLink>
                         <Link to={{
                             pathname: '/plant',
                             plantState: plant
@@ -264,11 +275,13 @@ class PlantsList extends React.Component {
                             <div key={plant.id}>
                                 <PlantAvatar plantAvatarId={plant.plant_avatar_id} avatarHeight="50px" /><br />
                                 {plant.plantName}<br />
-                                {plant.dailyWaterTime}
+                                {plant.dailyWaterTime}<br />
                                 <Countdown date={new Date(currentDate + " " + plant.dailyWaterTime)} renderer={ renderer }/>,
                             </div>
+
                         </Link>
-                
+                        </PlantLink>
+                        
                     ) )}
                 </PlantWrapper>
                 {this.state.isAddingPlant ? 
