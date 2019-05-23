@@ -1,5 +1,11 @@
 import React from 'react';
 
+import image1 from '../assets/1.png';
+import image2 from '../assets/2.png';
+import image3 from '../assets/3.png';
+import image4 from '../assets/4.png';
+import image5 from '../assets/5.png';
+import image6 from '../assets/6.png';
 import image7 from '../assets/7.png';
 import image8 from '../assets/8.png';
 import image9 from '../assets/9.png';
@@ -16,6 +22,19 @@ class PlantAvatar extends React.Component {
 
     avatarPicker = (avatarId) => {
         switch(avatarId) {
+
+            case 1:
+                return image1;
+            case 2:
+                return image2;
+            case 3:
+                return image3;
+            case 4:
+                return image4;
+            case 5:
+                return image5;
+            case 6:
+                return image6;
             case 7:
                 return image7;
             case 8:
@@ -36,17 +55,20 @@ class PlantAvatar extends React.Component {
                 return image15;
             case 16:
                 return image16;
+            default:
+                return image3;
         }
     };
 
     render(){
+
         return (
-            <div>
                 <img 
-                src={this.avatarPicker(this.props.plantAvatarId)} 
+                src={this.avatarPicker(parseInt(this.props.avatarId))} 
                 height={this.props.avatarHeight} 
-                alt={this.props.plantAvatarId}/>
-            </div>
+                alt={this.props.avatarId}
+                style={{"z-index": "100"}}/>
+                
         )
     }
 

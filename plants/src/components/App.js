@@ -12,6 +12,7 @@ import styled from 'styled-components';
 import plantcacti from '../assets/plant-cacti2.png';
 import PlantsList from './PlantsList';
 import Plant from './Plant';
+import PlantAvatar from './PlantAvatar';
 
 const AppStyles = styled.div`
 
@@ -24,9 +25,10 @@ const HeaderContainer = styled.div`
     align-items: center;
     height: 100px;
     border-bottom: 1px solid black;
-    background-image: url(${plantcacti});
+    background-image: linear-gradient( rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url(${plantcacti});
+    
     background-size: cover;
-    opacity: 0.6;
+
     width: 100%;
 
     a {
@@ -39,20 +41,15 @@ const HeaderContainer = styled.div`
     h1 {
         font-size: 50px;
         text-shadow:
-          -1px -1px 0 #000,
-          1px -1px 0 #000,
-          -1px 1px 0 #000,
-          1px 1px 0 #000;
+          -1px -1px 0 #555,
+          1px -1px 0 #555,
+          -1px 1px 0 #555,
+          1px 1px 0 #555;
 
         @media(min-width: 800px) {
           font-size: 100px;
         }
       }
-
-  
-   
-
-
 `
 
 const HeaderNav = styled.div`   
@@ -63,15 +60,31 @@ const HeaderNav = styled.div`
         color: white;
         font-size: 25px;
         font-weight: 900;
-
             
     }
+`
+
+const AvatarCircle =  styled.div`
+    background-color: white;
+    border-radius: 100px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 12px 10px 10px 10px;
+    height: 30px;
+`
+
+const SameLineWelcome = styled.div`
+    display: flex;
+    flex-direction: row;
 `
 
 function App() {
 
   const isSignedIn = localStorage.getItem('token');
   const username = localStorage.getItem('username')  
+  const avatarId = localStorage.getItem('avatarid')  
 
   return (
     <Router>
@@ -81,8 +94,21 @@ function App() {
             <Link to="/protected"><h1>Water My Plants</h1></Link>
           </div>
           <HeaderNav>
-            <Link to="/login">Log In</Link>
-            <Link to="/registration">Sign Up</Link>            
+          {!isSignedIn ? 
+            <>
+              <Link to="/login">Log In</Link>
+              <Link to="/registration">Sign Up</Link>
+            </>  
+              : <SameLineWelcome>
+                <Link to="/protected">Welcome {username} 
+              
+
+                </Link>
+                <AvatarCircle> 
+                      <PlantAvatar avatarId={avatarId} avatarHeight="35px" /> 
+                </AvatarCircle> 
+              </SameLineWelcome>
+            }     
             </HeaderNav>
         </HeaderContainer>
                    
