@@ -13,10 +13,12 @@ import image6 from '../assets/6.png';
 
 const SignUpStyles = styled.div`
     width: 275px;
-    height: 300px;
+    height: 550px;
     background-color: whitesmoke;
     margin: 50px auto;
     border-radius: 15px;
+
+    
 `
 
 const SignUpForm = styled.form`
@@ -28,7 +30,7 @@ const SignUpForm = styled.form`
     
 
     input {
-        margin: 10px;
+        margin: 10px auto;
         height: 35px;
         border: none;
         border-radius: 20px;
@@ -49,6 +51,73 @@ const SignUpForm = styled.form`
         }
 
     }
+`
+
+const AvatarIconsWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto;
+`
+
+const IconBox = styled.div`
+    display: flex;
+`
+
+const Icon = styled.div`
+    padding: 10px;
+
+    
+`
+
+const SignUpButton = styled.button`
+    position:relative;
+    padding: 10px 20px;  
+    border: 1px solid hsla(210, 50%, 85%, 1);
+    background: none;
+    cursor: pointer;
+    width: 60%;
+    margin: 0 auto;
+    
+    /* margin: 10px auto 0; */
+    
+    font-family: 'Amatic SC', cursive;
+    font-weight: 900;
+    /* text-transform: uppercase; */
+    font-size: 25px;  
+    color: white;
+    
+    background-color: hsl(210, 80%, 42%);
+    box-shadow: hsla(210, 40%, 52%, .4) 2px 2px 22px;
+    border-radius: 20px; 
+    z-index: 0;  
+    overflow: hidden;   
+
+    ::before {
+        content: '';
+        pointer-events: none;
+        opacity: .6;
+        background:
+            radial-gradient(circle at 20% 35%,  transparent 0,  transparent 2px, hsla(210, 50%, 85%, 1) 3px, hsla(210, 50%, 85%, 1) 4px, transparent 4px),
+            radial-gradient(circle at 75% 44%, transparent 0,  transparent 2px, hsla(210, 50%, 85%, 1) 3px, hsla(210, 50%, 85%, 1) 4px, transparent 4px),
+            radial-gradient(circle at 46% 52%, transparent 0, transparent 4px, hsla(210, 50%, 85%, 1) 5px, hsla(210, 50%, 85%, 1) 6px, transparent 6px);
+
+        width: 100%;
+        height: 300%;
+        top: 0;
+        left: 0;
+        position: absolute;
+        animation: bubbles 5s linear infinite both;
+
+        @keyframes bubbles {
+            from {
+                transform: translate();
+            }
+            to {
+                transform: translate(0, -66.666%);
+            }
+        }
+
+}
 `
 
 class Registration extends React.Component {
@@ -117,69 +186,73 @@ class Registration extends React.Component {
                         value={this.state.credentials.phoneNumber}
                         onChange={this.handleChange}
                     />
-                    <div>
-                        <div>
-                            <img src={image1} height="50px" /><br />
-                            <input 
-                                type="radio"
-                                value="1"
-                                onChange={this.handleOptionChange}
-                                checked={this.state.credentials.avatar_id === '1'} 
-                            />
-                        </div>
-                        <div>
-                            <img src={image2} height="50px" /><br />
-                            <input 
-                                type="radio"
-                                value="2"
-                                onChange={this.handleOptionChange}
-                                checked={this.state.credentials.avatar_id === '2'} 
-                            />
-                        </div>
-                        <div>
-                            <img src={image3} height="50px" /><br />
-                            <input 
-                                type="radio"
-                                value="3"
-                                onChange={this.handleOptionChange}
-                                checked={this.state.credentials.avatar_id === '3'} 
-                            />
-                        </div>
-                        <div>
-                            <img src={image4} height="50px" /><br />
-                            <input 
-                                type="radio"
-                                value="4"
-                                onChange={this.handleOptionChange}
-                                checked={this.state.credentials.avatar_id === '4'} 
-                            />
-                        </div>
-                        <div>
-                            <img src={image5} height="50px" /><br />
-                            <input 
-                                type="radio"
-                                value="5"
-                                onChange={this.handleOptionChange}
-                                checked={this.state.credentials.avatar_id === '5'} 
-                            />
-                        </div>
-                        <div>
-                            <img src={image6} height="50px" /><br />
-                            <input 
-                                type="radio"
-                                value="6"
-                                onChange={this.handleOptionChange}
-                                checked={this.state.credentials.avatar_id === '6'} 
-                            />
-                        </div>
-                    </div>
+                    <AvatarIconsWrapper>
+                        <IconBox>
+                            <Icon>
+                                <img src={image1} height="50px" /><br />
+                                <input 
+                                    type="radio"
+                                    value="1"
+                                    onChange={this.handleOptionChange}
+                                    checked={this.state.credentials.avatar_id === '1'} 
+                                />
+                            </Icon>
+                            <Icon>
+                                <img src={image2} height="50px" /><br />
+                                <input 
+                                    type="radio"
+                                    value="2"
+                                    onChange={this.handleOptionChange}
+                                    checked={this.state.credentials.avatar_id === '2'} 
+                                />
+                            </Icon>
+                            <Icon>
+                                <img src={image3} height="50px" /><br />
+                                <input 
+                                    type="radio"
+                                    value="3"
+                                    onChange={this.handleOptionChange}
+                                    checked={this.state.credentials.avatar_id === '3'} 
+                                />
+                            </Icon>
+                        </IconBox>
+                        <IconBox>
+                            <Icon>
+                                <img src={image4} height="50px" /><br />
+                                <input 
+                                    type="radio"
+                                    value="4"
+                                    onChange={this.handleOptionChange}
+                                    checked={this.state.credentials.avatar_id === '4'} 
+                                />
+                            </Icon>
+                            <Icon>
+                                <img src={image5} height="50px" /><br />
+                                <input 
+                                    type="radio"
+                                    value="5"
+                                    onChange={this.handleOptionChange}
+                                    checked={this.state.credentials.avatar_id === '5'} 
+                                />
+                            </Icon>
+                            <Icon>
+                                <img src={image6} height="50px" /><br />
+                                <input 
+                                    type="radio"
+                                    value="6"
+                                    onChange={this.handleOptionChange}
+                                    checked={this.state.credentials.avatar_id === '6'} 
+                                />
+                            </Icon>
+                        </IconBox>
+                    </AvatarIconsWrapper>
 
 
-                    <button>
+                    <SignUpButton>
                         {this.props.isRegistering 
-                            ? <Loader type="ThreeDots" color="#00BFFF" height="25" width="50" /> 
+                            ? <Loader type="ThreeDots" color="#FFFFFF" height="25" width="50" /> 
                             : "Sign Up"}
-                    </button>
+                    </SignUpButton>
                 </SignUpForm>
             </SignUpStyles>
         )

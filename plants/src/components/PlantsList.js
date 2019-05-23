@@ -26,7 +26,11 @@ const PlantWrapper = styled.div`
     display: flex;
     justify-content: space-around;
     width: 95%;
-    margin: 0 auto 20px;
+    margin: 30px auto;
+    
+    a {
+        text-decoration: none;
+    }
 `
 
 const NewPlantForm = styled.form`
@@ -94,6 +98,7 @@ const NewPlantButton = styled.button`
     height: 35px;
     border-radius: 15px;
     font-size: 20px;
+    
 
     &:hover {
         background-color: white;
@@ -104,7 +109,53 @@ const NewPlantButton = styled.button`
 `
 
 const AddPlantButton = styled.button`
-    margin: 0 auto;
+    position:relative;
+    padding: 10px 20px;  
+    border: 1px solid hsla(210, 50%, 85%, 1);
+    background: none;
+    cursor: pointer;
+    width: 60%;
+    margin: 20px auto;
+    /* margin: 10px auto 0; */
+    
+    font-family: 'Amatic SC', cursive;
+    font-weight: 900;
+    /* text-transform: uppercase; */
+    font-size: 25px;  
+    color: white;
+    
+    background-color: hsl(210, 80%, 42%);
+    box-shadow: hsla(210, 40%, 52%, .4) 2px 2px 22px;
+    border-radius: 20px; 
+    z-index: 0;  
+    overflow: hidden;   
+
+    ::before {
+        content: '';
+        pointer-events: none;
+        opacity: .6;
+        background:
+            radial-gradient(circle at 20% 35%,  transparent 0,  transparent 2px, hsla(210, 50%, 85%, 1) 3px, hsla(210, 50%, 85%, 1) 4px, transparent 4px),
+            radial-gradient(circle at 75% 44%, transparent 0,  transparent 2px, hsla(210, 50%, 85%, 1) 3px, hsla(210, 50%, 85%, 1) 4px, transparent 4px),
+            radial-gradient(circle at 46% 52%, transparent 0, transparent 4px, hsla(210, 50%, 85%, 1) 5px, hsla(210, 50%, 85%, 1) 6px, transparent 6px);
+
+        width: 100%;
+        height: 300%;
+        top: 0;
+        left: 0;
+        position: absolute;
+        animation: bubbles 5s linear infinite both;
+
+        @keyframes bubbles {
+            from {
+                transform: translate();
+            }
+            to {
+                transform: translate(0, -66.666%);
+            }
+        }
+
+}
 `
 
 class PlantsList extends React.Component {
@@ -266,7 +317,9 @@ class PlantsList extends React.Component {
                         </NewPlantForm>
                         
 
-                : <AddPlantButton onClick={() => this.toggleAddPlantForm()}>Add New Plant</AddPlantButton>}
+                : 
+                
+                <AddPlantButton onClick={() => this.toggleAddPlantForm()}>Add New Plant</AddPlantButton>}
                 
             </NewPlantWrapper>
         )
