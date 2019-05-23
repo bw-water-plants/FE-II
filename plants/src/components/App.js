@@ -88,7 +88,13 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/registration" component={Registration} />
           <PrivateRoute exact path="/protected" component={Home} />
-          {/* <PrivateRoute exact path="/plant/:plantid" component={Plant} /> */}
+          <Route
+            path="/plant"
+            render={props => (
+            <Plant
+              {...props}
+            />)}
+          />
         </AppStyles>
       
     </Router>

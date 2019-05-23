@@ -195,10 +195,10 @@ export const UPDATE_PLANT_SUCCESS = 'UPDATE_PLANT_SUCCESS';
 export const UPDATE_PLANT_FAILURE = 'UPDATE_PLANT_FAILURE';
 
 
-export const updatePlant = plantId => plantObject => dispatch => {
+export const updatePlant = (plantId, plantObject) => dispatch => {
     dispatch({type: UPDATE_PLANT})
 
-    axiosWithAuth()
+    return axiosWithAuth()
         .put(url + "/plants/" + plantId, plantObject)
         .then(res => {
             dispatch({ type: UPDATE_PLANT_SUCCESS, payload: res.data})
@@ -215,7 +215,7 @@ export const DELETE_PLANT_FAILURE = 'DELETE_PLANT_FAILURE';
 
 export const deletePlant = plantId => dispatch => {
     dispatch({type: DELETE_PLANT})
-    axiosWithAuth()
+    return axiosWithAuth()
         .delete(url + "/plants/" + plantId)
         .then(res => {
             dispatch({ type: DELETE_PLANT_SUCCESS, payload: res.data})

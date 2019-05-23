@@ -17,26 +17,23 @@ class Plant extends React.Component {
     };
 
     componentDidMount() {
-        console.log(this.props)
-        const { plantid } = this.props.match.params;  
-        const plant = this.props.plants.filter(plant => plant.id = plantid)
+        console.log(this.props.location.plantState)
+        const plant = this.props.location.plantState
         this.setState({
             ...this.state,
-            plantid: plantid,
+            plantid: 1, // NEEDS FIXED plant.id
             formData: {
                 plantName: plant.plantName,
                 dailyWaterTime: plant.dailyWaterTime
             }
         })
-        console.log(this.state)
     }
     
     removePlant = id => {
-        this.props.deletePlant(id);
-    };
-
-    editPlant = id => {
-        this.props.updatePlant(id);
+        this.props.deletePlant(id)
+        .then(() => {
+            this.props.history.push('/protected');
+         });
     };
 
     toggleForm() {
@@ -58,11 +55,10 @@ class Plant extends React.Component {
 
     handleEditPlant() {
         console.log(this.props);
-         this.props.updatePlant(this.props.plant[1].id, this.state.formData)
-        //  .then(this.toggleForm())
-        //  .then(() => {
-        //      this.props.history.push('/plant');
-        //  });
+         this.props.updatePlant( this.state.plantid, this.state.formData)
+         .then(() => {
+            this.props.history.push('/protected');
+         });
     }
 
     render() {        
@@ -75,7 +71,7 @@ class Plant extends React.Component {
                     <h3>{this.state.formData.plantName}</h3>
                     <p>{this.state.formData.dailyWaterTime}</p>
                     <button onClick={() => this.toggleForm()}><i className="fas fa-edit"></i></button>
-                    <button onClick={() => this.removePlant(this.state.formData.id)}><i className="fas fa-trash-alt"></i></button>
+                    <button onClick={() => this.removePlant(this.state.plantid)}><i className="fas fa-trash-alt"></i></button>
                 </div>
                     :
                     <div>
