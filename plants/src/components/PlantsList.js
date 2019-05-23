@@ -5,6 +5,7 @@ import Loader from "react-loader-spinner";
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import PlantAvatar from './PlantAvatar';
+import Countdown from 'react-countdown-now';
 
 import image7 from '../assets/7.png';
 import image8 from '../assets/8.png';
@@ -94,8 +95,22 @@ class PlantsList extends React.Component {
 
     render() {
 
-        const userId = localStorage.getItem('id');
+        const renderer = ({ hours, minutes, seconds, completed }) => {
+            if (completed) {
+                return "Water Me!"
+            } else {
+              // Render a countdown
+              return <span>Water Me In: {hours}:{minutes}:{seconds}</span>;
+            }
+          };
 
+        const userId = localStorage.getItem('id');
+        const date = new Date()
+        var monthNames = [
+            "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+          ];
+        const currentDate = date.getDate() + " " + monthNames[date.getMonth()] + " " + date.getFullYear()
+        console.log(currentDate)
 
         return (
             <div>
@@ -107,7 +122,8 @@ class PlantsList extends React.Component {
                         <div key={plant.id}>
                             <PlantAvatar plantAvatarId={plant.plant_avatar_id} avatarHeight="50px" /><br />
                             {plant.plantName}<br />
-                            {plant.dailyWaterTime}
+                            {plant.dailyWaterTime}<br />
+                            <Countdown date={new Date(currentDate + " " + plant.dailyWaterTime)} renderer={ renderer }/>,
                         </div>
                     </Link>
                 ) )}
