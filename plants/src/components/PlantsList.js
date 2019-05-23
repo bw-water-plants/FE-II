@@ -5,6 +5,7 @@ import Loader from "react-loader-spinner";
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import PlantAvatar from './PlantAvatar';
+import Countdown from 'react-countdown-now';
 
 import image7 from '../assets/7.png';
 import image8 from '../assets/8.png';
@@ -24,18 +25,24 @@ const NewPlantWrapper = styled.div`
 
 const PlantWrapper = styled.div`
     display: flex;
-    justify-content: space-around;
-    width: 95%;
-    margin: 30px auto;
+    justify-content: space-between;
+    /* justify-content: center; */
     
+    width: 100%;
+    margin: 30px auto;
     flex-wrap: wrap;
     
-    a {
-        margin: 0 auto;
-        text-decoration: none;
-        width: 33%;
+    
+    a {        
+        text-decoration: none;        
         padding-bottom: 20px;
     }
+`
+
+const PlantLink = styled.div`
+    display: flex;
+    justify-content: center;
+    width: 30%;
 `
 
 const NewPlantForm = styled.form`
@@ -239,13 +246,28 @@ class PlantsList extends React.Component {
 
     render() {
 
-        const userId = localStorage.getItem('id');
+        const renderer = ({ hours, minutes, seconds, completed }) => {
+            if (completed) {
+                return "Water Me!"
+            } else {
+              // Render a countdown
+              return <span>Water Me In: {hours}:{minutes}:{seconds}</span>;
+            }
+          };
 
+        const userId = localStorage.getItem('id');
+        const date = new Date()
+        var monthNames = [
+            "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+          ];
+        const currentDate = date.getDate() + " " + monthNames[date.getMonth()] + " " + date.getFullYear()
+        console.log(currentDate)
 
         return (
             <NewPlantWrapper>
                 <PlantWrapper>
                     {this.props.plants.map(plant =>(
+                        <PlantLink>
                         <Link to={{
                             pathname: '/plant',
                             plantState: plant
@@ -253,10 +275,13 @@ class PlantsList extends React.Component {
                             <div key={plant.id}>
                                 <PlantAvatar plantAvatarId={plant.plant_avatar_id} avatarHeight="50px" /><br />
                                 {plant.plantName}<br />
-                                {plant.dailyWaterTime}
+                                {plant.dailyWaterTime}<br />
+                                <Countdown date={new Date(currentDate + " " + plant.dailyWaterTime)} renderer={ renderer }/>,
                             </div>
+
                         </Link>
-                
+                        </PlantLink>
+                        
                     ) )}
                 </PlantWrapper>
                 {this.state.isAddingPlant ? 
