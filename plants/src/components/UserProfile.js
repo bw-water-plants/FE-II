@@ -4,6 +4,8 @@ import { getUser, updateUser} from '../actions/actions';
 import { withRouter } from 'react-router-dom';
 import Loader from "react-loader-spinner";
 import styled from 'styled-components';
+import createHistory from 'history/createBrowserHistory'
+const history = createHistory();
 
 const UserInfoStyles = styled.div`
 
@@ -106,6 +108,7 @@ class UserProfile extends React.Component {
         localStorage.clear('token')
         localStorage.clear('username')
         this.props.history.push("/login");
+        history.go(0)
         
     }
 
@@ -115,13 +118,14 @@ class UserProfile extends React.Component {
                 
             {!this.state.updatingUser ? 
                 <UserWrapper>
-                    <UserButtonsWrapper>
-                        <UserButton onClick={() => this.toggleForm()}>Update User Info</UserButton>
-                        <UserButton onClick={() => this.logout()}>Logout</UserButton>
-                    </UserButtonsWrapper>
+
                     <UserInfo>
                         <Info><strong>Username: </strong>{this.props.user.username}</Info>
                         <Info><strong>Phone Number: </strong>{this.props.user.phoneNumber}</Info>
+                        <UserButtonsWrapper>
+                            <UserButton onClick={() => this.toggleForm()}>Update User Info</UserButton>
+                            <UserButton onClick={() => this.logout()}>Logout</UserButton>
+                        </UserButtonsWrapper>
                     </UserInfo>
                 </UserWrapper>
                 

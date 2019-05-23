@@ -13,6 +13,7 @@ import plantcacti from '../assets/plant-cacti2.png';
 import PlantsList from './PlantsList';
 import Plant from './Plant';
 import PlantAvatar from './PlantAvatar';
+import UserProfile from './UserProfile';
 
 const AppStyles = styled.div`
 
@@ -100,7 +101,7 @@ function App() {
               <Link to="/registration">Sign Up</Link>
             </>  
               : <SameLineWelcome>
-                <Link to="/protected">Welcome {username} 
+                <Link to="/userprofile">Welcome {username} 
               
 
                 </Link>
@@ -113,8 +114,10 @@ function App() {
         </HeaderContainer>
                    
           <Route path="/login" component={Login} />
+          <Route exact path="/" component={Login} />
           <Route path="/registration" component={Registration} />
           <PrivateRoute exact path="/protected" component={Home} />
+          <PrivateRoute exact path="/userprofile" component={UserProfile} />
           <Route
             path="/plant"
             render={props => (
