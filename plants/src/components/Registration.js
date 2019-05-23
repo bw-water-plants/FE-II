@@ -32,6 +32,7 @@ const SignUpForm = styled.form`
     input {
         margin: 10px auto;
         height: 35px;
+        width: 90%;
         border: none;
         border-radius: 20px;
         padding-top: 5px;
