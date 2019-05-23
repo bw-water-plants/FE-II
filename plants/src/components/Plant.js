@@ -7,6 +7,8 @@ import moment from 'moment';
 class Plant extends React.Component {
 
     state = {
+        updatingPlant: false, 
+        plantid: '',
         isUpdatingPlant: false, 
         formData: {
             plantName: '',
@@ -15,9 +17,14 @@ class Plant extends React.Component {
     };
 
     componentDidMount() {
-        const plant = this.props.plant[1];
+
+        console.log(this.props)
+        const { plantid } = this.props.match.params;  
+        const plant = this.props.plants.filter(plant => plant.id = plantid)
+
         this.setState({
             ...this.state,
+            plantid: plantid,
             formData: {
                 plantName: plant.plantName,
                 dailyWaterTime: plant.dailyWaterTime
@@ -60,17 +67,16 @@ class Plant extends React.Component {
     }
 
     render() {        
-        const plant = this.props.plant[0];    
-        // const waterTime = plant.dailyWaterTime;    
 
         return(
             <div>
                 {!this.state.isUpdatingPlant ?
                 <div>
-                    <h3>{plant.plantName}</h3>
-                    <p>{plant.dailyWaterTime}</p>
+
+                    <h3>{this.state.formData.plantName}</h3>
+                    <p>{this.state.formData.dailyWaterTime}</p>
                     <button onClick={() => this.toggleForm()}><i className="fas fa-edit"></i></button>
-                    <button onClick={() => this.removePlant(plant.id)}><i className="fas fa-trash-alt"></i></button>
+                    <button onClick={() => this.removePlant(this.state.formData.id)}><i className="fas fa-trash-alt"></i></button>
                 </div>
                     :
                     <div>
@@ -99,7 +105,7 @@ class Plant extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    plant: state.plant.plants
+    plants: state.plant.plants
 })
 
 export default connect(mapStateToProps, { getPlant, updatePlant, deletePlant })(Plant);

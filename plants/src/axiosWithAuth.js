@@ -5,7 +5,6 @@ export const axiosWithAuth = () => {
     return axios.create({
         headers: {
             Authorization: token
-        },
-        baseUrl: 'https://water-my-plants-lambda.herokuapp.com/'
+        }
     });
 }
