@@ -25,11 +25,11 @@ const NewPlantWrapper = styled.div`
 
 const PlantWrapper = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     /* justify-content: center; */
     
-    width: 100%;
-    margin: 30px auto;
+    width: 95%;
+    margin: 30px 0;
     flex-wrap: wrap;
     
     
@@ -42,7 +42,8 @@ const PlantWrapper = styled.div`
 const PlantLink = styled.div`
     display: flex;
     justify-content: center;
-    width: 30%;
+    width: 40%;
+    text-align: center;
 `
 
 const NewPlantForm = styled.form`
@@ -73,7 +74,7 @@ const PlantInput = styled.div`
 const PlantIcons = styled.div`
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
+    /* margin: 0 auto; */
 `
 const IconGroup = styled.div`
     display: flex;
@@ -118,6 +119,11 @@ const NewPlantButton = styled.button`
         border: 2px solid #538B53;
     }
     
+`
+
+const AddPlant = styled.div`
+    display: flex;
+    justify-content: center;
 `
 
 const AddPlantButton = styled.button`
@@ -251,7 +257,7 @@ class PlantsList extends React.Component {
                 return "Water Me!"
             } else {
               // Render a countdown
-              return <span>Water Me In: {hours}:{minutes}:{seconds}</span>;
+              return <span>Water Me In:<br />{hours}:{minutes}:{seconds}</span>;
             }
           };
 
@@ -276,7 +282,7 @@ class PlantsList extends React.Component {
                                 <PlantAvatar plantAvatarId={plant.plant_avatar_id} avatarHeight="50px" /><br />
                                 {plant.plantName}<br />
                                 {plant.dailyWaterTime}<br />
-                                <Countdown date={new Date(currentDate + " " + plant.dailyWaterTime)} renderer={ renderer }/>,
+                                <Countdown date={new Date(currentDate + " " + plant.dailyWaterTime)} renderer={ renderer }/>
                             </div>
 
                         </Link>
@@ -348,9 +354,11 @@ class PlantsList extends React.Component {
                         
 
                 : 
-                
-                <AddPlantButton onClick={() => this.toggleAddPlantForm()}>Add New Plant</AddPlantButton>}
-                
+                <AddPlant>
+                    <AddPlantButton onClick={() => this.toggleAddPlantForm()}>Add New Plant</AddPlantButton>
+                </AddPlant>
+                }
+            
             </NewPlantWrapper>
         )
     }
