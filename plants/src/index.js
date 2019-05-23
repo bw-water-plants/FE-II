@@ -14,7 +14,7 @@ import reducer from './reducers/combineReducer';
 
 const store = createStore(
   reducer, 
-  applyMiddleware(thunk)
+  applyMiddleware(thunk, logger)
   // composeWithDevTools(applyMiddleware(thunk))
 );
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getPlant, updatePlant, deletePlant } from '../actions/actions';
+
+
 import moment from 'moment';
 
 
@@ -23,7 +25,7 @@ class Plant extends React.Component {
 
         this.setState({
             ...this.state,
-            plantid: 1, // NEEDS FIXED plant.id
+            plantid: plant.id,
             formData: {
                 plantName: plant.plantName,
                 dailyWaterTime: plant.dailyWaterTime
@@ -87,7 +89,7 @@ class Plant extends React.Component {
                                 onChange={this.handleChange}
                                 /><br />
                             <input
-                                type="text"
+                                type="time"
                                 name="dailyWaterTime"
                                 value={this.state.formData.dailyWaterTime}
                                 onChange={this.handleChange}
