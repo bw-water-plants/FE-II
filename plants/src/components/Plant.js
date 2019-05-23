@@ -9,6 +9,7 @@ class Plant extends React.Component {
     state = {
         updatingPlant: false, 
         plantid: '',
+        isUpdatingPlant: false, 
         formData: {
             plantName: 'test',
             dailyWaterTime: 'test',
@@ -42,7 +43,7 @@ class Plant extends React.Component {
         console.log('toggling form')
         this.setState({
             ...this.state,
-            updatingPlant: !this.state.updatingPlant
+            isUpdatingPlant: !this.state.isUpdatingPlant
         })
     }
 
@@ -55,20 +56,24 @@ class Plant extends React.Component {
         });
     };
 
-    handleEditPlant = () => {
-         this.props.updatePlant(this.props.plants.id, this.state.formData)
-         .then(this.toggleForm())
+    handleEditPlant() {
+        console.log(this.props);
+         this.props.updatePlant(this.props.plant[1].id, this.state.formData)
+        //  .then(this.toggleForm())
+        //  .then(() => {
+        //      this.props.history.push('/plant');
+        //  });
     }
 
     render() {        
-            
 
         return(
             <div>
-                {!this.state.updatingPlant ?
+                {!this.state.isUpdatingPlant ?
                 <div>
+
                     <h3>{this.state.formData.plantName}</h3>
-                    <p>{moment(this.state.formData.plantName).format('h:mm:ss a')}</p>
+                    <p>{this.state.formData.dailyWaterTime}</p>
                     <button onClick={() => this.toggleForm()}><i className="fas fa-edit"></i></button>
                     <button onClick={() => this.removePlant(this.state.formData.id)}><i className="fas fa-trash-alt"></i></button>
                 </div>

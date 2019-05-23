@@ -197,6 +197,7 @@ export const UPDATE_PLANT_FAILURE = 'UPDATE_PLANT_FAILURE';
 
 export const updatePlant = plantId => plantObject => dispatch => {
     dispatch({type: UPDATE_PLANT})
+
     axiosWithAuth()
         .put(url + "/plants/" + plantId, plantObject)
         .then(res => {
