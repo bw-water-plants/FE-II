@@ -10,20 +10,39 @@ const UserInfoStyles = styled.div`
 `
 
 const UserInfo = styled.div`
-
+    text-align: center;
+    margin-top: 30px;
 `
 
 const UserWrapper = styled.div`
-
+    display: flex;
+    flex-direction: column;
 `
 
 const UserButtonsWrapper = styled.div`
-    float: right;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 15px;
 `
 
 const UserButton = styled.button`
     border: none;
     background-color: white;
+    font-family: 'Amatic SC', cursive;
+    color: #538b53;
+    font-size: 25px;
+    font-weight: 600;
+    cursor: pointer;
+`
+
+const Info = styled.div`
+
+    strong {
+        font-family: 'Amatic SC', cursive;
+        font-size: 25px;
+        letter-spacing: 2px;
+        
+    }
 `
 
 class UserProfile extends React.Component {
@@ -97,12 +116,12 @@ class UserProfile extends React.Component {
             {!this.state.updatingUser ? 
                 <UserWrapper>
                     <UserButtonsWrapper>
-                        <UserButton onClick={() => this.toggleForm()}>Update</UserButton>
+                        <UserButton onClick={() => this.toggleForm()}>Update User Info</UserButton>
                         <UserButton onClick={() => this.logout()}>Logout</UserButton>
                     </UserButtonsWrapper>
                     <UserInfo>
-                        <div><strong>Username: </strong>{this.props.user.username}</div>
-                        <div><strong>Phone Number: </strong>{this.props.user.phoneNumber}</div>
+                        <Info><strong>Username: </strong>{this.props.user.username}</Info>
+                        <Info><strong>Phone Number: </strong>{this.props.user.phoneNumber}</Info>
                     </UserInfo>
                 </UserWrapper>
                 
