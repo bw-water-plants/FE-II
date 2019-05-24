@@ -20,22 +20,21 @@ import image16 from '../assets/16.png';
 
 const NewPlantWrapper = styled.div`
     margin: 0 auto;
-    
+    width: 500px;
+
 `
 
 const PlantWrapper = styled.div`
+
     display: flex;
     justify-content: space-around;
     /* justify-content: center; */
     
-    width: 95%;
     margin: 30px 0;
     flex-wrap: wrap;
     
-    
     a {        
         text-decoration: none;        
-        padding-bottom: 20px;
 
         &:visited {
             color: #538b53;
@@ -46,7 +45,7 @@ const PlantWrapper = styled.div`
 const PlantLink = styled.div`
     display: flex;
     justify-content: center;
-    width: 40%;
+    width: 25%;
     text-align: center;
     font-size: 36px;
     font-family: 'Amatic SC', cursive;
@@ -186,18 +185,78 @@ const AddPlantButton = styled.button`
 
 }
 `
+const WaterDone = styled.div`
+    width: 50px;
+
+    font-size: 16px;
+    height: 50px;
+`
 
 const WaterTime = styled.div`
-    background-color: hsl(210,80%,42%);
-    width: 75px;
+    position:relative;
+    padding: 5px 10px;  
+    border: 1px solid hsla(210, 50%, 85%, 1);
+    background: none;
+
+    width: 100px;
+    /* margin: 10px auto 0; */
+    
+    font-family: 'Amatic SC', cursive;
+    font-weight: 900;
+    /* text-transform: uppercase; */
+    font-size: 12px;  
+    letter-spacing: 2px;
     color: white;
     border-radius: 5px;
-    font-size: 12px;
-    padding: 5px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: normal;
-    margin: 0 auto;
+    background-color: hsl(210, 80%, 42%);
+    box-shadow: hsla(210, 40%, 52%, .4) 2px 2px 22px;
+    overflow: hidden;   
+
+    ::before {
+        content: '';
+        pointer-events: none;
+        opacity: .6;
+        background:
+            radial-gradient(circle at 20% 35%,  transparent 0,  transparent 2px, hsla(210, 50%, 85%, 1) 3px, hsla(210, 50%, 85%, 1) 4px, transparent 4px),
+            radial-gradient(circle at 75% 44%, transparent 0,  transparent 2px, hsla(210, 50%, 85%, 1) 3px, hsla(210, 50%, 85%, 1) 4px, transparent 4px),
+            radial-gradient(circle at 46% 52%, transparent 0, transparent 4px, hsla(210, 50%, 85%, 1) 5px, hsla(210, 50%, 85%, 1) 6px, transparent 6px);
+
+        width: 100%;
+        height: 300%;
+        top: 0;
+        left: 0;
+        position: absolute;
+        animation: bubbles 5s linear infinite both;
+
+        @keyframes bubbles {
+            from {
+                transform: translate();
+            }
+            to {
+                transform: translate(0, -66.666%);
+            }
+        }
+
+}
+
+ span {
+     font-size: 14px
+     font-family: Arial, sans-serif;
+
+ }
 `
+
+// const WaterTime = styled.div`
+//     background-color: hsl(210,80%,42%);
+//     width: 75px;
+//     color: white;
+//     border-radius: 5px;
+//     font-size: 12px;
+//     padding: 5px;
+//     font-family: 'Roboto', sans-serif;
+//     font-weight: normal;
+//     margin: 0 auto;
+// `
 
 class PlantsList extends React.Component {
 
@@ -302,10 +361,10 @@ class PlantsList extends React.Component {
 
         const renderer = ({ hours, minutes, seconds, completed }) => {
             if (completed) {
-                return null
+                return <WaterDone>Watering Done</WaterDone>
             } else {
               // Render a countdown
-              return <WaterTime>Water In:<br />{hours}:{minutes}:{seconds}</WaterTime>;
+              return <WaterTime>Water Time:<br /><span>{hours}:{minutes}:{seconds}</span></WaterTime>;
             }
           };
 
@@ -327,7 +386,6 @@ class PlantsList extends React.Component {
                         }}>
                             <div key={plant.id}>
                                 <PlantAvatar avatarId={plant.plant_avatar_id} avatarHeight="50px" /><br />
-                                {plant.plantName}<br />
                                 {/* {plant.dailyWaterTime}<br /> */}
                                 <Countdown date={new Date(currentDate + " " + plant.dailyWaterTime)} renderer={ renderer }/>
                                 

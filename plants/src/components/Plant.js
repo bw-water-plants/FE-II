@@ -15,9 +15,7 @@ const PlantWrapper = styled.div`
     width: 300px;
     padding: 25px;
 
-    img {
-        width: 100px;
-    }
+
 
     h3 {
         font-family: 'Amatic SC', cursive;
@@ -26,6 +24,14 @@ const PlantWrapper = styled.div`
         padding: 15px 0;
         margin: 0;
     }
+`
+
+const UsernameBanner = styled.div`
+    font-family: 'Amatic SC', cursive;
+    font-size: 48px;
+    font-weight: 900;
+    color: #538b53;
+
 `
 
 const WaterTime = styled.div`
@@ -260,7 +266,7 @@ class Plant extends React.Component {
 
                 <PlantWrapper>
                 <BackButton><Link to="/protected"><i class="fas fa-arrow-circle-left"></i></Link></BackButton>
-                    <PlantAvatar avatarId={this.state.plantAvatarId} avatarHeight="100px" />
+                    <PlantAvatar avatarId={this.state.plantAvatarId} avatarHeight="200px" />
                     {!this.state.isUpdatingPlant ?
                     <div>
                         <UsernameBanner>{this.state.formData.plantName}</UsernameBanner>
