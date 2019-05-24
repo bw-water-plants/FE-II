@@ -258,7 +258,7 @@ const WaterTime = styled.div`
 `
 
 const PlantName = styled.div`
-    font-size: 18px;
+    font-size: 24px;
     margin-bottom: 5px;
 `
 
