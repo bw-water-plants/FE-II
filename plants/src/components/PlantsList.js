@@ -54,6 +54,7 @@ const PlantLink = styled.div`
 `
 
 const NewPlantForm = styled.form`
+    /* margin-bottom: 200px; */
     input {
         margin: 0 auto;
     }
@@ -78,8 +79,6 @@ const PlantInput = styled.div`
             font-size: 25px;
             text-align: center;
         }
-
-
     }
 `
 
