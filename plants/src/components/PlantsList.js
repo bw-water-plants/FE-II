@@ -23,7 +23,8 @@ import imagez4 from '../assets/z4.png';
 
 const NewPlantWrapper = styled.div`
     margin: 0 auto;
-    width: 500px;
+    width: 95%;
+    max-width: 500px;
 
 `
 

@@ -9,7 +9,8 @@ import createHistory from 'history/createBrowserHistory'
 const history = createHistory();
 
 const UserInfoStyles = styled.div`
-    width: 500px;
+    width: 95%;
+    max-width: 500px;
     margin: 45px auto;
     padding: 25px;
     background-color: whitesmoke;
@@ -34,7 +35,7 @@ const AvatarCircle =  styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 12px 10px 0px 10px;
+    margin: 12px 10px 5px 10px;
 
     :hover{
       background-color: #6eb26e;
