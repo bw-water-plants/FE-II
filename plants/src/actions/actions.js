@@ -251,7 +251,7 @@ export const UPDATE_REMINDER_FAILURE = 'UPDATE_REMINDER_FAILURE';
 export const updateTwilio = (twilioId, twilioObject) => dispatch => {
     dispatch({type: UPDATE_REMINDER})
     return axiosWithAuth()
-        .put(url + "/twilio/", twilioObject)
+        .put(url + "/twilio/" + twilioId, twilioObject)
         .then(res => {
             dispatch({ type: UPDATE_REMINDER_SUCCESS, payload: res.data})
         })

@@ -226,22 +226,15 @@ class PlantsList extends React.Component {
       };
 
 
-    addPlant() {
+    addPlant = e => {
+
         this.props.createPlant(this.state.newPlant)
-        
         //new Date('August 19, 1975 23:15:30 GMT+07:00');
-
-
-
         let date = new Date(); 
         
         let datestring = `${date.getMonth()+1}-${date.getDate()}-${date.getFullYear()} ${this.state.newPlant.dailyWaterTime}`
-        console.log(datestring)
         let date2 = new Date(datestring)
-        console.log(date2)
-
         let datestring2 = `${date2.getUTCMonth()+1}-${date2.getUTCDate()}-${date2.getUTCFullYear()} ${date2.getUTCHours()}:${date2.getUTCMinutes()}`
-
 
         if(this.props.user.useTwilio){
             const twilioObject = {
@@ -249,13 +242,11 @@ class PlantsList extends React.Component {
                 "timeZone": "America/Chicago",
                 "time": datestring2,
                 "phoneNumber": this.props.user.phoneNumber,
-                "user_id": this.props.user.user_id
+                "user_id": this.props.user.id
             }
-            
-            console.log(twilioObject.time)
             this.props.createTwilio(twilioObject)
-
         }
+
     }
     
     toggleAddPlantForm() {
@@ -297,7 +288,8 @@ class PlantsList extends React.Component {
                 return image15;
             case 16:
                 return image16;
-
+            default: 
+                return image7;
         }
     }
 
@@ -314,16 +306,12 @@ class PlantsList extends React.Component {
             }
           };
 
-        const userId = localStorage.getItem('id');
         const date = new Date()
         var monthNames = [
             "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
           ];
         const currentDate = date.getDate() + " " + monthNames[date.getMonth()] + " " + date.getFullYear()
-        
-        //new Date('August 19, 1975 23:15:30 GMT+07:00');
-
-        const twilioDate = new Date(monthNames[date.getMonth()] + " " + date.getDate() + ", "  + date.getFullYear())
+    
         
         return (
             <NewPlantWrapper>
@@ -394,7 +382,7 @@ class PlantsList extends React.Component {
                                 </IconGroup>
                             </PlantIcons>
                             <NewPlantButtonWrapper>
-                                <NewPlantButton onClick={() => this.addPlant()}>Submit</NewPlantButton>
+                                <NewPlantButton onClick={(e) => this.addPlant(e)}>Submit</NewPlantButton>
                                 <NewPlantButton onClick={() => this.toggleAddPlantForm()}>Cancel</NewPlantButton>
                             </NewPlantButtonWrapper>
                         </NewPlantForm>
