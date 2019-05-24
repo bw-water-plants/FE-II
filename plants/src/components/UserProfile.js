@@ -184,7 +184,7 @@ class UserProfile extends React.Component {
         this.props.updateUser(this.props.user.id, this.state.formData)
         .then(this.toggleForm(), this.getUser())
         .then(() => {
-            this.props.history.push('/protected');
+            this.props.history.push('/UserProfile');
           });
     }
 

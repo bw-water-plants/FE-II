@@ -16,7 +16,7 @@ import PlantAvatar from './PlantAvatar';
 import UserProfile from './UserProfile';
 
 const AppStyles = styled.div`
-
+  width: 100%;
 `
 
 const HeaderContainer = styled.div`
@@ -80,6 +80,23 @@ const SameLineWelcome = styled.div`
     display: flex;
     flex-direction: row;
 `
+const FooterContainer = styled.div`
+  width: 100%;
+  position: fixed;
+  bottom: -50px;
+  font-family: 'Amatic SC', cursive;
+  font-size: 25px;
+  color: #538b53;
+  text-align: center;
+  
+  
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+
+
+  
+`
 
 function App() {
 
@@ -112,6 +129,12 @@ function App() {
             }     
             </HeaderNav>
         </HeaderContainer>
+
+        <FooterContainer>
+          <p>&copy; Water My Plants 2019</p>
+          <div>Icons made by <a href="https://www.freepik.com/?__hstc=57440181.c0bfb091a5e7e4204b404268ab216eb9.1558661494975.1558661494975.1558661494975.1&__hssc=57440181.6.1558661494975&__hsfp=164341980" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 		    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 		    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+        </FooterContainer>
                    
           <Route path="/login" component={Login} />
           <Route exact path="/" component={Login} />
