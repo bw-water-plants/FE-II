@@ -59,7 +59,7 @@ const PlantLink = styled.div`
 `
 
 const NewPlantForm = styled.form`
-    /* margin-bottom: 200px; */
+    margin-top: 20px;
     input {
         margin: 0 auto;
     }
