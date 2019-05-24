@@ -222,12 +222,14 @@ class UserProfile extends React.Component {
                         <input
                             type="text"
                             name="username"
+                            placeholder="Username"
                             value={this.state.formData.username}
                             onChange={this.handleChange}
                             /><br />
                         <input
                             type="text"
                             name="phoneNumber"
+                            placeholder="Phone Number"
                             value={this.state.formData.phoneNumber}
                             onChange={this.handleChange}
                             /><br />
