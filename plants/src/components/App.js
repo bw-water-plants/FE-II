@@ -103,12 +103,13 @@ const ContentWrapper = styled.div`
 const FooterContainer = styled.div`
   width: 100%;
   position: fixed;
-  bottom: 10px;
+  bottom: 0;
   font-family: 'Roboto', cursive;
   font-size: 12px;
   color: #538b53;
   text-align: center;
   background: white;
+  padding-bottom: 10px;
   
   
   /* display: flex;
