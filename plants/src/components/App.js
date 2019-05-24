@@ -88,7 +88,8 @@ const ContentWrapper = styled.div`
 const FooterContainer = styled.div`
   width: 100%;
   position: fixed;
-  bottom: 10px;
+  bottom: 0;
+  padding-bottom: 5px;
   font-family: 'Amatic SC', cursive;
   font-size: 23px;
   color: #538b53;
