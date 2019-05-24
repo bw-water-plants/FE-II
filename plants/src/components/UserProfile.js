@@ -137,7 +137,7 @@ class UserProfile extends React.Component {
                     <UserInfo>
                         <Info><strong>Username: </strong>{this.props.user.username}</Info>
                         <Info><strong>Phone Number: </strong>{this.props.user.phoneNumber}</Info>
-                        <Info><strong>Use Twilio: </strong>{this.props.user.useTwilio ? "Yes" : "No"}</Info>
+                        <Info><strong>Recieving Reminders: </strong>{this.props.user.useTwilio ? "Enabled" : "Disabled"}</Info>
                         <UserButtonsWrapper>
                             <UserButton onClick={() => this.toggleForm()}>Update User Info</UserButton>
                             <UserButton onClick={() => this.logout()}>Logout</UserButton>
@@ -160,7 +160,7 @@ class UserProfile extends React.Component {
                             value={this.state.formData.phoneNumber}
                             onChange={this.handleChange}
                             /><br />
-                 Use Twilio: <input 
+                 Text Notifications: <input 
                         type="checkbox"
                         name="useTwilio"
                         checked={this.state.formData.useTwilio}

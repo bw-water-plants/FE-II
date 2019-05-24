@@ -200,7 +200,7 @@ class Registration extends React.Component {
                         value={this.state.credentials.phoneNumber}
                         onChange={this.handleChange}
                     /><br />
-                    Use Twilio: <input 
+                    Text Notifications: <input 
                         type="checkbox"
                         name="useTwilio"
                         checked={this.state.credentials.useTwilio}
