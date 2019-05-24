@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getPlants, createPlant } from '../actions/actions';
+import { getPlants, createPlant, createTwilio } from '../actions/actions';
 import Loader from "react-loader-spinner";
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
@@ -229,6 +229,34 @@ class PlantsList extends React.Component {
 
     addPlant() {
         this.props.createPlant(this.state.newPlant)
+        
+        //new Date('August 19, 1975 23:15:30 GMT+07:00');
+
+
+
+        let date = new Date(); 
+        
+        let datestring = `${date.getMonth()+1}-${date.getDate()}-${date.getFullYear()} ${this.state.newPlant.dailyWaterTime}`
+        console.log(datestring)
+        let date2 = new Date(datestring)
+        console.log(date2)
+
+        let datestring2 = `${date2.getUTCMonth()+1}-${date2.getUTCDate()}-${date2.getUTCFullYear()} ${date2.getUTCHours()}:${date2.getUTCMinutes()}`
+
+
+        if(this.props.user.useTwilio){
+            const twilioObject = {
+                "plantName": this.state.newPlant.plantName,
+                "timeZone": "America/Chicago",
+                "time": datestring2,
+                "phoneNumber": this.props.user.phoneNumber,
+                "user_id": this.props.user.user_id
+            }
+            
+            console.log(twilioObject.time)
+            this.props.createTwilio(twilioObject)
+
+        }
     }
     
     toggleAddPlantForm() {
@@ -276,6 +304,8 @@ class PlantsList extends React.Component {
 
     render() {
 
+
+
         const renderer = ({ hours, minutes, seconds, completed }) => {
             if (completed) {
                 return null
@@ -291,13 +321,16 @@ class PlantsList extends React.Component {
             "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
           ];
         const currentDate = date.getDate() + " " + monthNames[date.getMonth()] + " " + date.getFullYear()
-        console.log(currentDate)
+        
+        //new Date('August 19, 1975 23:15:30 GMT+07:00');
 
+        const twilioDate = new Date(monthNames[date.getMonth()] + " " + date.getDate() + ", "  + date.getFullYear())
+        
         return (
             <NewPlantWrapper>
                 <PlantWrapper>
                     {this.props.plants.map(plant =>(
-                        <PlantLink>
+                        <PlantLink key={plant.id}>
                         <Link to={{
                             pathname: '/plant',
                             plantState: plant
@@ -337,37 +370,27 @@ class PlantsList extends React.Component {
                             </PlantInput>
                             <PlantIcons>
                                 <IconGroup>
-                                    <Icon>                              
-                                        <img src={image7} height="50px" /><br /><input type="radio" value="7" onChange={this.handleOptionChange} checked={this.state.newPlant.plant_avatar_id === '7'} />
+                                    <Icon><img src={image7} height="50px" alt={image7}/><br /><input type="radio" value="7" onChange={this.handleOptionChange} checked={this.state.newPlant.plant_avatar_id === '7'}  />
                                     </Icon>
-                                    <Icon>
-                                        <img src={image8} height="50px" /><br /><input type="radio" value="8" onChange={this.handleOptionChange} checked={this.state.newPlant.plant_avatar_id === '8'} />
+                                    <Icon><img src={image8} height="50px" alt={image8}/><br /><input type="radio" value="8" onChange={this.handleOptionChange} checked={this.state.newPlant.plant_avatar_id === '8'}  />
                                     </Icon>
-                                    <Icon>
-                                        <img src={image9} height="50px" /><br /><input type="radio" value="9" onChange={this.handleOptionChange} checked={this.state.newPlant.plant_avatar_id === '9'} />
+                                    <Icon><img src={image9} height="50px" alt={image9}/><br /><input type="radio" value="9" onChange={this.handleOptionChange} checked={this.state.newPlant.plant_avatar_id === '9'}  />
                                     </Icon>
-                                    <Icon>
-                                        <img src={image10} height="50px" /><br /><input type="radio" value="10" onChange={this.handleOptionChange} checked={this.state.newPlant.plant_avatar_id === '10'} />
+                                    <Icon><img src={image10} height="50px" alt={image10}/><br /><input type="radio" value="10" onChange={this.handleOptionChange} checked={this.state.newPlant.plant_avatar_id === '10'}  />
                                     </Icon>
-                                    <Icon>
-                                        <img src={image11} height="50px" /><br /><input type="radio" value="11" onChange={this.handleOptionChange} checked={this.state.newPlant.plant_avatar_id === '11'} />
+                                    <Icon><img src={image11} height="50px" alt={image11}/><br /><input type="radio" value="11" onChange={this.handleOptionChange} checked={this.state.newPlant.plant_avatar_id === '11'}  />
                                     </Icon>
                                 </IconGroup>
                                 <IconGroup> 
-                                    <Icon>
-                                        <img src={image12} height="50px" /><br /><input type="radio" value="12" onChange={this.handleOptionChange} checked={this.state.newPlant.plant_avatar_id === '12'} />
+                                    <Icon><img src={image12} height="50px" alt={image12}/><br /><input type="radio" value="12" onChange={this.handleOptionChange} checked={this.state.newPlant.plant_avatar_id === '12'}  />
                                     </Icon>
-                                    <Icon>
-                                        <img src={image13} height="50px" /><br /><input type="radio" value="13" onChange={this.handleOptionChange} checked={this.state.newPlant.plant_avatar_id === '13'} />
+                                    <Icon><img src={image13} height="50px" alt={image13}/><br /><input type="radio" value="13" onChange={this.handleOptionChange} checked={this.state.newPlant.plant_avatar_id === '13'}  />
                                     </Icon>
-                                    <Icon>
-                                        <img src={image14} height="50px" /><br /><input type="radio" value="14" onChange={this.handleOptionChange} checked={this.state.newPlant.plant_avatar_id === '14'} />
+                                    <Icon><img src={image14} height="50px" alt={image14}/><br /><input type="radio" value="14" onChange={this.handleOptionChange} checked={this.state.newPlant.plant_avatar_id === '14'}  />
                                     </Icon>
-                                    <Icon>
-                                        <img src={image15} height="50px" /><br /><input type="radio" value="15" onChange={this.handleOptionChange} checked={this.state.newPlant.plant_avatar_id === '15'} />
+                                    <Icon><img src={image15} height="50px" alt={image15}/><br /><input type="radio" value="15" onChange={this.handleOptionChange} checked={this.state.newPlant.plant_avatar_id === '15'}  />
                                     </Icon>
-                                    <Icon>
-                                        <img src={image16} height="50px" /><br /><input type="radio" value="16" onChange={this.handleOptionChange} checked={this.state.newPlant.plant_avatar_id === '16'} /> 
+                                    <Icon><img src={image16} height="50px" alt={image16}/><br /><input type="radio" value="16" onChange={this.handleOptionChange} checked={this.state.newPlant.plant_avatar_id === '16'}  /> 
                                     </Icon>              
                                 </IconGroup>
                             </PlantIcons>
@@ -390,8 +413,9 @@ class PlantsList extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    plants: state.plant.plants
+    plants: state.plant.plants,
+    user: state.user.user
 })
 
 
-export default connect(mapStateToProps, { getPlants, createPlant })(PlantsList)
+export default connect(mapStateToProps, { getPlants, createPlant, createTwilio })(PlantsList)

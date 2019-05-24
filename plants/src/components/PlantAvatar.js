@@ -66,8 +66,7 @@ class PlantAvatar extends React.Component {
                 <img 
                 src={this.avatarPicker(parseInt(this.props.avatarId))} 
                 height={this.props.avatarHeight} 
-                alt={this.props.avatarId}
-                style={{"z-index": "100"}}/>
+                alt={this.props.avatarId}/>
                 
         )
     }

@@ -199,10 +199,18 @@ class Plant extends React.Component {
     }
 
     render() {        
-
+        const date = new Date()
+        var monthNames = [
+        "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+      ];
+      const twilioDate = new Date(monthNames[date.getMonth()] + " " + date.getDate() + ", "  + date.getFullYear())
+         //new Date('August 19, 1975 23:15:30 GMT+07:00');
         return(
+
             <div>
+
                 <BackButton><Link to="/protected"><i class="fas fa-arrow-circle-left"></i></Link></BackButton>
+
                 <PlantWrapper>
                     <PlantAvatar avatarId={this.state.plantAvatarId} avatarHeight="100px" />
                     {!this.state.isUpdatingPlant ?
@@ -214,7 +222,6 @@ class Plant extends React.Component {
                             <EditPlantButton onClick={() => this.removePlant(this.state.plantid)}><i className="fas fa-trash-alt"></i></EditPlantButton>
                         </PlantButtonsWrapper>
                     </div>
-                
                     :
                     <div>
                         <EditPlantForm>
