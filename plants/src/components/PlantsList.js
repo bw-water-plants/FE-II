@@ -36,6 +36,10 @@ const PlantWrapper = styled.div`
     a {        
         text-decoration: none;        
         padding-bottom: 20px;
+
+        &:visited {
+            color: #538b53;
+        }
     }
 `
 

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getPlant, updatePlant, deletePlant } from '../actions/actions';
 import PlantAvatar from './PlantAvatar';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const PlantWrapper = styled.div`
     display: flex;
@@ -121,6 +122,20 @@ const EditButton = styled.button`
 }
 `
 
+const BackButton = styled.button`
+    margin: 10px 0 10px 10px;
+    border: none;
+    background: none;
+    font-size: 25px;
+    color: #538b53;
+        
+        a:visited {
+            color: #538b53;
+        }
+
+
+`
+
 class Plant extends React.Component {
 
     state = {
@@ -193,6 +208,8 @@ class Plant extends React.Component {
         return(
 
             <div>
+
+                <BackButton><Link to="/protected"><i class="fas fa-arrow-circle-left"></i></Link></BackButton>
 
                 <PlantWrapper>
                     <PlantAvatar avatarId={this.state.plantAvatarId} avatarHeight="100px" />
