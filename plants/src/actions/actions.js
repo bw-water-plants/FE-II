@@ -195,9 +195,6 @@ export const UPDATE_PLANT = 'UPDATE_PLANT';
 export const UPDATE_PLANT_SUCCESS = 'UPDATE_PLANT_SUCCESS';
 export const UPDATE_PLANT_FAILURE = 'UPDATE_PLANT_FAILURE';
 
-
-
-
 export const updatePlant = (plantId, plantObject) => dispatch => {
 
     dispatch({type: UPDATE_PLANT})
@@ -231,3 +228,34 @@ export const deletePlant = plantId => dispatch => {
         })
 };
 
+export const CREATE_REMINDER = 'CREATE_REMINDER';
+export const CREATE_REMINDER_SUCCESS = 'CREATE_REMINDER_SUCCESS';
+export const CREATE_REMINDER_FAILURE = 'CREATE_REMINDER_FAILURE';
+
+export const createTwilio = twilioObject => dispatch => {
+    dispatch({type: CREATE_REMINDER})
+    return axiosWithAuth()
+        .post(url + "/twilio/", twilioObject)
+        .then(res => {
+            dispatch({ type: CREATE_REMINDER_SUCCESS, payload: res.data})
+        })
+        .catch(err => {
+            dispatch({ type: CREATE_REMINDER_FAILURE, payload: err })
+        })
+};
+
+export const UPDATE_REMINDER = 'UPDATE_REMINDER';
+export const UPDATE_REMINDER_SUCCESS = 'UPDATE_REMINDER_SUCCESS';
+export const UPDATE_REMINDER_FAILURE = 'UPDATE_REMINDER_FAILURE';
+
+export const updateTwilio = (twilioId, twilioObject) => dispatch => {
+    dispatch({type: UPDATE_REMINDER})
+    return axiosWithAuth()
+        .put(url + "/twilio/", twilioObject)
+        .then(res => {
+            dispatch({ type: UPDATE_REMINDER_SUCCESS, payload: res.data})
+        })
+        .catch(err => {
+            dispatch({ type: UPDATE_REMINDER_FAILURE, payload: err })
+        })
+};

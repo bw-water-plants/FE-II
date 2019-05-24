@@ -141,6 +141,8 @@ class UserProfile extends React.Component {
         formData: {
             username: '',
             phoneNumber: '',
+            useTwilio: ''
+            
         }
     }
 
@@ -150,14 +152,15 @@ class UserProfile extends React.Component {
     }   
 
     getUser() { 
-    console.log(this.state.userId)
+
         this.props.getUser(this.state.userId)
             .then(() => {
             this.setState({
                 ...this.state,
                 formData: {
                     username: this.props.user.username,
-                    phoneNumber: this.props.user.phoneNumber
+                    phoneNumber: this.props.user.phoneNumber,
+                    useTwilio: this.props.user.useTwilio
                     }
                 });
         });
@@ -184,7 +187,7 @@ class UserProfile extends React.Component {
         this.props.updateUser(this.props.user.id, this.state.formData)
         .then(this.toggleForm(), this.getUser())
         .then(() => {
-            this.props.history.push('/protected');
+            this.props.history.push('/userprofile');
           });
     }
 
@@ -198,6 +201,18 @@ class UserProfile extends React.Component {
         
     }
 
+    handleCheckboxChange = event => {
+
+
+        this.setState({ 
+            ...this.state,
+            formData: {
+                ...this.state.credentials,
+              useTwilio: event.target.checked
+              }
+         }) 
+    }
+
     render() {
         return (
             <UserInfoStyles>
@@ -208,6 +223,7 @@ class UserProfile extends React.Component {
                     <UserInfo>
                         <Info><strong>Username: </strong>{this.props.user.username}</Info>
                         <Info><strong>Phone Number: </strong>{this.props.user.phoneNumber}</Info>
+                        <Info><strong>Use Twilio: </strong>{this.props.user.useTwilio ? "Yes" : "No"}</Info>
                         <UserButtonsWrapper>
                             <UserButton onClick={() => this.toggleForm()}>Update User Info</UserButton>
                             <UserButton onClick={() => this.logout()}>Logout</UserButton>
@@ -233,6 +249,12 @@ class UserProfile extends React.Component {
                             value={this.state.formData.phoneNumber}
                             onChange={this.handleChange}
                             /><br />
+                 Use Twilio: <input 
+                        type="checkbox"
+                        name="useTwilio"
+                        checked={this.state.formData.useTwilio}
+                        onChange={this.handleCheckboxChange }
+                            />
                     </UserForm>
                     <EditUserButtonsWrapper>
                         <EditUserButton onClick={() => this.handleUpdateUser()}>Confirm</EditUserButton>
