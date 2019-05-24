@@ -1,5 +1,6 @@
 import {     
-    CREATE_REMINDER, CREATE_REMINDER_SUCCESS, CREATE_REMINDER_FAILURE
+    CREATE_REMINDER, CREATE_REMINDER_SUCCESS, CREATE_REMINDER_FAILURE,
+    UPDATE_REMINDER, UPDATE_REMINDER_FAILURE, UPDATE_REMINDER_SUCCESS
 } from '../actions/actions';
 
 const initialState = {
@@ -7,7 +8,8 @@ const initialState = {
     error: '',
 
 //plant state
-    isSettingReminder: false
+    isSettingReminder: false,
+    isUpdatingReminder: false,
 }
 
 const twilioReduccer = (state = initialState, action) => {
@@ -28,6 +30,24 @@ const twilioReduccer = (state = initialState, action) => {
             return {
                 ...state,
                 isSettingReminder: false,
+                error: action.payload
+            };
+        case UPDATE_REMINDER:
+            return {
+                ...state,
+                isUpdatingReminder: true,
+                error: ''
+            };
+        case UPDATE_REMINDER_SUCCESS:
+            return {
+                ...state,
+                isUpdatingReminder: false,
+                error: ''
+            };
+        case UPDATE_REMINDER_FAILURE:
+            return {
+                ...state,
+                isUpdatingReminder: false,
                 error: action.payload
             };
         default:

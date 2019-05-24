@@ -243,3 +243,19 @@ export const createTwilio = twilioObject => dispatch => {
             dispatch({ type: CREATE_REMINDER_FAILURE, payload: err })
         })
 };
+
+export const UPDATE_REMINDER = 'UPDATE_REMINDER';
+export const UPDATE_REMINDER_SUCCESS = 'UPDATE_REMINDER_SUCCESS';
+export const UPDATE_REMINDER_FAILURE = 'UPDATE_REMINDER_FAILURE';
+
+export const updateTwilio = (twilioId, twilioObject) => dispatch => {
+    dispatch({type: UPDATE_REMINDER})
+    return axiosWithAuth()
+        .put(url + "/twilio/", twilioObject)
+        .then(res => {
+            dispatch({ type: UPDATE_REMINDER_SUCCESS, payload: res.data})
+        })
+        .catch(err => {
+            dispatch({ type: UPDATE_REMINDER_FAILURE, payload: err })
+        })
+};
