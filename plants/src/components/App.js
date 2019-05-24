@@ -25,7 +25,7 @@ const HeaderContainer = styled.div`
     justify-content: space-around;
     align-items: center;
     height: 100px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #555;
     background-image: linear-gradient( rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url(${plantcacti});
     
     background-size: cover;
@@ -42,10 +42,10 @@ const HeaderContainer = styled.div`
     h1 {
         font-size: 50px;
         text-shadow:
-          -1px -1px 0 #555,
-          1px -1px 0 #555,
-          -1px 1px 0 #555,
-          1px 1px 0 #555;
+          -2px -2px 0 #555,
+          2px -2px 0 #555,
+          -2px 2px 0 #555,
+          2px 2px 0 #555;
 
         @media(min-width: 800px) {
           font-size: 100px;
