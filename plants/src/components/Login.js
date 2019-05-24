@@ -5,13 +5,15 @@ import Loader from "react-loader-spinner";
 import styled from 'styled-components';
 import { createBrowserHistory } from 'history'
 
+import image14 from '../assets/14.png';
+import imagez2 from '../assets/z2.png';
+
 const history = createBrowserHistory();
 
 const LoginStyles = styled.div`
     width: 275px;
-    height: 240px;
     background-color: whitesmoke;
-    margin: 50px auto;
+    margin: 0px auto;
     border-radius: 15px;
 `
 
@@ -28,7 +30,7 @@ const LoginForm = styled.form`
         border: none;
         border-radius: 20px;
         padding-top: 5px;
-        font-size: 25px;
+        font-size: 14px;
         color: hsla(149, 35%, 45%, 1);
         text-align: center;
         
@@ -38,7 +40,7 @@ const LoginForm = styled.form`
         }
 
         ::placeholder {
-            font-size: 25px;
+            font-size: 14px;
             text-align: center; 
             color: hsla(149, 35%, 45%, 1);       
         }
@@ -96,6 +98,17 @@ const LoginButton = styled.button`
 }
 `
 
+const TopIcons = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+    width: 275px;
+    margin: 50px auto;
+    margin-bottom: 10px;
+    border-radius: 15px;
+`
+
 class Login extends React.Component {
 
     state = {
@@ -125,7 +138,14 @@ class Login extends React.Component {
 
     render(){
         return (
+            <div>
+                <TopIcons>                
+                    <img src={image14} alt={image14} width="75px" height="75px"/>
+                    <img src={imagez2} alt={imagez2} width="50px" height="50px"/>
+                </TopIcons>
+
             <LoginStyles>
+
                 <LoginForm onSubmit={this.login}>
                     <input 
                         type="text"
@@ -148,6 +168,7 @@ class Login extends React.Component {
                     </LoginButton>
                 </LoginForm>
             </LoginStyles>
+            </div>
         )
     }
 

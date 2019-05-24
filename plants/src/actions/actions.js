@@ -253,9 +253,9 @@ export const updateTwilio = (twilioId, twilioObject) => dispatch => {
     return axiosWithAuth()
         .put(url + "/twilio/" + twilioId, twilioObject)
         .then(res => {
-            dispatch({ type: UPDATE_REMINDER_SUCCESS, payload: res.data})
+            dispatch({ type: UPDATE_REMINDER_SUCCESS, payload: res.data}, console.log(res))
         })
         .catch(err => {
-            dispatch({ type: UPDATE_REMINDER_FAILURE, payload: err })
+            dispatch({ type: UPDATE_REMINDER_FAILURE, payload: err }, console.log(err))
         })
 };

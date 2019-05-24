@@ -15,6 +15,8 @@ import Plant from './Plant';
 import PlantAvatar from './PlantAvatar';
 import UserProfile from './UserProfile';
 
+import imagez1 from '../assets/z1.png';
+
 const AppStyles = styled.div`
   width: 100%;
 `
@@ -24,9 +26,9 @@ const HeaderContainer = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 100px;
+    height: 130px;
     border-bottom: 1px solid #555;
-    background-image: linear-gradient( rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url(${plantcacti});
+    background-image: linear-gradient( rgba(255,255,255,0.4), rgba(255,255,255,0.6)), url(${plantcacti});
     
     background-size: cover;
 
@@ -48,7 +50,7 @@ const HeaderContainer = styled.div`
           2px 2px 0 #555;
 
         @media(min-width: 800px) {
-          font-size: 100px;
+          font-size: 75px;
         }
       }
 `
@@ -61,12 +63,11 @@ const HeaderNav = styled.div`
         color: white;
         font-size: 25px;
         font-weight: 900;
-            
     }
 `
 
 const AvatarCircle =  styled.div`
-    background-color: white;
+    background-color: #538b53;
     border-radius: 100px;
     width: 45px;
     display: flex;
@@ -74,11 +75,25 @@ const AvatarCircle =  styled.div`
     align-items: center;
     margin: 12px 10px 10px 10px;
     height: 45px;
+
+    :hover{
+      background-color: #6eb26e;
+    }
 `
 
 const SameLineWelcome = styled.div`
     display: flex;
     flex-direction: row;
+    align-items: center;
+
+    a{
+      color: white;
+
+      :hover{
+        color: #2f452f;
+        text-shadow: none;
+      }
+    }
 `
 
 const ContentWrapper = styled.div`
@@ -88,10 +103,9 @@ const ContentWrapper = styled.div`
 const FooterContainer = styled.div`
   width: 100%;
   position: fixed;
-  bottom: 0;
-  padding-bottom: 5px;
-  font-family: 'Amatic SC', cursive;
-  font-size: 23px;
+  bottom: 10px;
+  font-family: 'Roboto', cursive;
+  font-size: 12px;
   color: #538b53;
   text-align: center;
   background: white;
@@ -100,8 +114,6 @@ const FooterContainer = styled.div`
   /* display: flex;
   flex-direction: column;
   align-items: center; */
-
-
   
 `
 
@@ -115,8 +127,9 @@ function App() {
     <Router>
       <AppStyles>
         <HeaderContainer>
+          
           <div className="header-title">
-            <Link to="/protected"><h1>Water My Plants</h1></Link>
+            <Link to="/protected"><h1><img src={imagez1} alt={imagez1} width="40px" height="40px"/>Water My Plants</h1></Link>
           </div>
           <HeaderNav>
           {!isSignedIn ? 
@@ -125,13 +138,12 @@ function App() {
               <Link to="/registration">Sign Up</Link>
             </>  
               : <SameLineWelcome>
-                <Link to="/userprofile">Welcome {username} 
-              
-
+                <Link to="/userprofile">Welcome <span>{username}</span></Link>
+                <Link to="/userprofile">
+                  <AvatarCircle> 
+                        <PlantAvatar avatarId={avatarId} avatarHeight="45px" /> 
+                  </AvatarCircle> 
                 </Link>
-                <AvatarCircle> 
-                      <PlantAvatar avatarId={avatarId} avatarHeight="35px" /> 
-                </AvatarCircle> 
               </SameLineWelcome>
             }     
             </HeaderNav>
