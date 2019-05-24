@@ -36,6 +36,10 @@ const PlantWrapper = styled.div`
     a {        
         text-decoration: none;        
         padding-bottom: 20px;
+
+        &:visited {
+            color: #538b53;
+        }
     }
 `
 
@@ -50,6 +54,7 @@ const PlantLink = styled.div`
 `
 
 const NewPlantForm = styled.form`
+    /* margin-bottom: 200px; */
     input {
         margin: 0 auto;
     }
@@ -65,6 +70,9 @@ const PlantInput = styled.div`
         width: 250px;
         height: 50px;
         border-radius: 20px;
+        font-size: 25px; 
+        color: #538b53;
+        text-align: center;
 
         ::placeholder {
             color: #538b53;
@@ -186,10 +194,9 @@ const WaterTime = styled.div`
     border-radius: 5px;
     font-size: 12px;
     padding: 5px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
- "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
- sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: normal;
+    margin: 0 auto;
 `
 
 class PlantsList extends React.Component {

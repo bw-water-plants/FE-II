@@ -16,9 +16,7 @@ const SignUpStyles = styled.div`
     height: 550px;
     background-color: whitesmoke;
     margin: 50px auto;
-    border-radius: 15px;
-
-    
+    border-radius: 15px;    
 `
 
 const SignUpForm = styled.form`
@@ -66,8 +64,13 @@ const IconBox = styled.div`
 
 const Icon = styled.div`
     padding: 10px;
-
+    display: flex;
+    flex-direction: column;
+    align-content: center;
     
+    input [type=radio] {
+        padding-left: 10px;
+    }    
 `
 
 const SignUpButton = styled.button`
@@ -210,7 +213,7 @@ class Registration extends React.Component {
                         <IconBox>
                             <Icon>
                                 <img src={image1} height="50px" /><br />
-                                <input 
+                                <input
                                     type="radio"
                                     value="1"
                                     onChange={this.handleOptionChange}
