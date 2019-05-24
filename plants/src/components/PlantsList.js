@@ -257,6 +257,11 @@ const WaterTime = styled.div`
  }
 `
 
+const PlantName = styled.div`
+    font-size: 18px;
+    margin-bottom: 5px;
+`
+
 // const WaterTime = styled.div`
 //     background-color: hsl(210,80%,42%);
 //     width: 75px;
@@ -372,7 +377,7 @@ class PlantsList extends React.Component {
 
         const renderer = ({ hours, minutes, seconds, completed }) => {
             if (completed) {
-                return <WaterDone>Watering Done</WaterDone>
+                return null
             } else {
               // Render a countdown
               return <WaterTime>Water Time:<br /><span>{hours}:{minutes}:{seconds}</span></WaterTime>;
@@ -397,7 +402,7 @@ class PlantsList extends React.Component {
                         }}>
                             <div key={plant.id}>
                                 <PlantAvatar avatarId={plant.plant_avatar_id} avatarHeight="50px" /><br />
-                                {/* {plant.dailyWaterTime}<br /> */}
+                                <PlantName>{plant.plantName}</PlantName>
                                 <Countdown date={new Date(currentDate + " " + plant.dailyWaterTime)} renderer={ renderer }/>
                                 
                             </div>
