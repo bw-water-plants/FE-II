@@ -46,6 +46,81 @@ const EditPlantButton = styled.button`
     background: none;
 `
 
+const EditPlantForm = styled.form`
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    input {
+        border:3px solid #538b53;
+        width: 250px;
+        height: 50px;
+        border-radius: 20px;
+        font-size: 25px; 
+        color: #538b53;
+        text-align: center;
+
+        ::placeholder {
+            color: #538b53;
+            font-size: 25px;
+            text-align: center;
+        }
+
+
+    }
+`
+
+const EditButton = styled.button`
+    position:relative;
+    padding: 10px 20px;  
+    border: 1px solid hsla(210, 50%, 85%, 1);
+    background: none;
+    cursor: pointer;
+    
+    margin: 10px auto;
+    /* margin: 10px auto 0; */
+    
+    font-family: 'Amatic SC', cursive;
+    font-weight: 900;
+    /* text-transform: uppercase; */
+    font-size: 25px;  
+    color: white;
+    
+    background-color: hsl(210, 80%, 42%);
+    box-shadow: hsla(210, 40%, 52%, .4) 2px 2px 22px;
+    border-radius: 20px; 
+    z-index: 0;  
+    overflow: hidden;   
+
+    ::before {
+        content: '';
+        pointer-events: none;
+        opacity: .6;
+        background:
+            radial-gradient(circle at 20% 35%,  transparent 0,  transparent 2px, hsla(210, 50%, 85%, 1) 3px, hsla(210, 50%, 85%, 1) 4px, transparent 4px),
+            radial-gradient(circle at 75% 44%, transparent 0,  transparent 2px, hsla(210, 50%, 85%, 1) 3px, hsla(210, 50%, 85%, 1) 4px, transparent 4px),
+            radial-gradient(circle at 46% 52%, transparent 0, transparent 4px, hsla(210, 50%, 85%, 1) 5px, hsla(210, 50%, 85%, 1) 6px, transparent 6px);
+
+        width: 100%;
+        height: 300%;
+        top: 0;
+        left: 0;
+        position: absolute;
+        animation: bubbles 5s linear infinite both;
+
+        @keyframes bubbles {
+            from {
+                transform: translate();
+            }
+            to {
+                transform: translate(0, -66.666%);
+            }
+        }
+
+}
+`
+
 class Plant extends React.Component {
 
     state = {
@@ -126,7 +201,7 @@ class Plant extends React.Component {
                 
                     :
                     <div>
-                        <form>
+                        <EditPlantForm>
                             <input
                                 type="text"
                                 name="plantName"
@@ -139,9 +214,9 @@ class Plant extends React.Component {
                                 value={this.state.formData.dailyWaterTime}
                                 onChange={this.handleChange}
                                 /><br />
-                        </form>
-                        <button onClick={() => this.handleEditPlant()}>Confirm</button>
-                        <button onClick={() => this.toggleForm()}>Cancel</button>
+                        </EditPlantForm>
+                        <EditButton onClick={() => this.handleEditPlant()}>Confirm</EditButton>
+                        <EditButton onClick={() => this.toggleForm()}>Cancel</EditButton>
                     </div>
                 
                 }  
