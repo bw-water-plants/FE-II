@@ -66,7 +66,7 @@ const HeaderNav = styled.div`
 `
 
 const AvatarCircle =  styled.div`
-    background-color: white;
+    background-color: #538b53;
     border-radius: 100px;
     width: 45px;
     display: flex;
@@ -74,11 +74,25 @@ const AvatarCircle =  styled.div`
     align-items: center;
     margin: 12px 10px 10px 10px;
     height: 45px;
+
+    :hover{
+      background-color: #6eb26e;
+    }
 `
 
 const SameLineWelcome = styled.div`
     display: flex;
     flex-direction: row;
+    align-items: center;
+
+    a{
+      color: black;
+
+      span{
+        color: white;
+        font-size: 28px;
+      }
+    }
 `
 
 const ContentWrapper = styled.div`
@@ -124,13 +138,15 @@ function App() {
               <Link to="/registration">Sign Up</Link>
             </>  
               : <SameLineWelcome>
-                <Link to="/userprofile">Welcome {username} 
+                <Link to="/userprofile">Welcome <span>{username}</span>
               
 
                 </Link>
-                <AvatarCircle> 
-                      <PlantAvatar avatarId={avatarId} avatarHeight="35px" /> 
-                </AvatarCircle> 
+                <Link to="/userprofile">
+                  <AvatarCircle> 
+                        <PlantAvatar avatarId={avatarId} avatarHeight="45px" /> 
+                  </AvatarCircle> 
+                </Link>
               </SameLineWelcome>
             }     
             </HeaderNav>

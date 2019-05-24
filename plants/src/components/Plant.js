@@ -9,8 +9,11 @@ const PlantWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-    margin-top: 30px;
+    background-color: whitesmoke;
+    margin: 45px auto;
+    border-radius: 15px;
+    width: 300px;
+    padding: 25px;
 
     img {
         width: 100px;
@@ -18,21 +21,59 @@ const PlantWrapper = styled.div`
 
     h3 {
         font-family: 'Amatic SC', cursive;
-        font-size: 35px;
+        font-size: 48px;
         color: #538b53;
+        padding: 15px 0;
+        margin: 0;
     }
 `
 
 const WaterTime = styled.div`
-    background-color: hsl(210,80%,42%);
-    width: 75px;
+    position:relative;
+    padding: 10px 20px;  
+    border: 1px solid hsla(210, 50%, 85%, 1);
+    background: none;
+
+    width: 250px;
+    /* margin: 10px auto 0; */
+    
+    font-family: 'Amatic SC', cursive;
+    font-weight: 900;
+    /* text-transform: uppercase; */
+    font-size: 25px;  
+    letter-spacing: 2px;
     color: white;
-    border-radius: 5px;
-    font-size: 12px;
-    padding: 5px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: normal;
-    margin: 0 auto;
+    
+    background-color: hsl(210, 80%, 42%);
+    box-shadow: hsla(210, 40%, 52%, .4) 2px 2px 22px;
+    overflow: hidden;   
+
+    ::before {
+        content: '';
+        pointer-events: none;
+        opacity: .6;
+        background:
+            radial-gradient(circle at 20% 35%,  transparent 0,  transparent 2px, hsla(210, 50%, 85%, 1) 3px, hsla(210, 50%, 85%, 1) 4px, transparent 4px),
+            radial-gradient(circle at 75% 44%, transparent 0,  transparent 2px, hsla(210, 50%, 85%, 1) 3px, hsla(210, 50%, 85%, 1) 4px, transparent 4px),
+            radial-gradient(circle at 46% 52%, transparent 0, transparent 4px, hsla(210, 50%, 85%, 1) 5px, hsla(210, 50%, 85%, 1) 6px, transparent 6px);
+
+        width: 100%;
+        height: 300%;
+        top: 0;
+        left: 0;
+        position: absolute;
+        animation: bubbles 5s linear infinite both;
+
+        @keyframes bubbles {
+            from {
+                transform: translate();
+            }
+            to {
+                transform: translate(0, -66.666%);
+            }
+        }
+
+}
 `
 
 const PlantButtonsWrapper = styled.div`
@@ -41,10 +82,16 @@ const PlantButtonsWrapper = styled.div`
 
 const EditPlantButton = styled.button`
     border: none;
+    font-family: 'Amatic SC', cursive;
     color: #538b53;
     font-size: 25px;
+    font-weight: 600;
     cursor: pointer;
-    background: none;
+    background-color: whitesmoke;
+
+    :hover{
+        color: #6eb26e;
+    }
 `
 
 const EditPlantForm = styled.form`
@@ -122,17 +169,18 @@ const EditButton = styled.button`
 }
 `
 
-const BackButton = styled.button`
-    margin: 10px 0 10px 10px;
-    border: none;
-    background: none;
+const BackButton = styled.div`
     font-size: 25px;
     color: #538b53;
-        
-        a:visited {
-            color: #538b53;
-        }
-
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    height: 35px;
+    
+    a:visited {
+        color: #538b53;
+    }
 
 `
 
@@ -209,17 +257,17 @@ class Plant extends React.Component {
 
             <div>
 
-                <BackButton><Link to="/protected"><i class="fas fa-arrow-circle-left"></i></Link></BackButton>
 
                 <PlantWrapper>
+                <BackButton><Link to="/protected"><i class="fas fa-arrow-circle-left"></i></Link></BackButton>
                     <PlantAvatar avatarId={this.state.plantAvatarId} avatarHeight="100px" />
                     {!this.state.isUpdatingPlant ?
                     <div>
-                        <h3> {this.state.formData.plantName}</h3>
-                        <WaterTime><span>Watering Time: {this.state.formData.dailyWaterTime}</span></WaterTime>
+                        <UsernameBanner>{this.state.formData.plantName}</UsernameBanner>
+                        <WaterTime><span>Watering Time:</span> {this.state.formData.dailyWaterTime}</WaterTime>
                         <PlantButtonsWrapper>
-                            <EditPlantButton onClick={() => this.toggleForm()}><i className="fas fa-edit"></i></EditPlantButton>
-                            <EditPlantButton onClick={() => this.removePlant(this.state.plantid)}><i className="fas fa-trash-alt"></i></EditPlantButton>
+                            <EditPlantButton onClick={() => this.toggleForm()}><i className="fas fa-edit"> </i>Edit</EditPlantButton>
+                            <EditPlantButton onClick={() => this.removePlant(this.state.plantid)}><i className="fas fa-trash-alt"></i>Delete Plant</EditPlantButton>
                         </PlantButtonsWrapper>
                     </div>
                     :

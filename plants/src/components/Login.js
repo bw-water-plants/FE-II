@@ -9,7 +9,6 @@ const history = createBrowserHistory();
 
 const LoginStyles = styled.div`
     width: 275px;
-    height: 240px;
     background-color: whitesmoke;
     margin: 50px auto;
     border-radius: 15px;
@@ -38,7 +37,7 @@ const LoginForm = styled.form`
         }
 
         ::placeholder {
-            font-size: 25px;
+            font-size: 18px;
             text-align: center; 
             color: hsla(149, 35%, 45%, 1);       
         }

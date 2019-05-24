@@ -13,10 +13,11 @@ import image6 from '../assets/6.png';
 
 const SignUpStyles = styled.div`
     width: 275px;
-    height: 550px;
+
     background-color: whitesmoke;
     margin: 50px auto;
     border-radius: 15px;    
+    padding-bottom: 25px;
 `
 
 const SignUpForm = styled.form`
@@ -34,7 +35,7 @@ const SignUpForm = styled.form`
         border: none;
         border-radius: 20px;
         padding-top: 5px;
-        font-size: 25px;
+        font-size: 18px;
         color: hsla(149, 35%, 45%, 1);
         text-align: center;
         
@@ -44,7 +45,7 @@ const SignUpForm = styled.form`
         }    
 
         ::placeholder {
-            font-size: 25px;
+            font-size: 18px;
             text-align: center; 
             color: hsla(149, 35%, 45%, 1);       
         }
@@ -52,10 +53,21 @@ const SignUpForm = styled.form`
     }
 `
 
+const CheckboxLabel = styled.div`
+    text-align: center;
+    font-size: 18px;
+    margin: 0 20px;
+    color: hsla(149, 35%, 45%, 1); 
+    border-top: 3px solid hsla(149, 35%, 45%, 0.7); 
+    padding-top: 15px;
+`
+
 const AvatarIconsWrapper = styled.div`
     display: flex;
     flex-direction: column;
     margin: 10px auto;
+    border-top: 3px solid hsla(149, 35%, 45%, 0.7); 
+    padding-top: 15px;
 `
 
 const IconBox = styled.div`
@@ -68,8 +80,9 @@ const Icon = styled.div`
     flex-direction: column;
     align-content: center;
     
-    input [type=radio] {
+    input[type=radio] {
         padding-left: 10px;
+
     }    
 `
 
@@ -203,7 +216,7 @@ class Registration extends React.Component {
                         value={this.state.credentials.phoneNumber}
                         onChange={this.handleChange}
                     /><br />
-                    Text Notifications: <input 
+                    <CheckboxLabel>Text Notifications:</CheckboxLabel> <input 
                         type="checkbox"
                         name="useTwilio"
                         checked={this.state.credentials.useTwilio}
@@ -269,8 +282,6 @@ class Registration extends React.Component {
                             </Icon>
                         </IconBox>
                     </AvatarIconsWrapper>
-
-
                     <SignUpButton>
                         {this.props.isRegistering 
                             ? <Loader type="ThreeDots" color="#FFFFFF" height="25" width="50" /> 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getPlants, createPlant, createTwilio } from '../actions/actions';
+import { getPlants, createPlant, createTwilio, getUser } from '../actions/actions';
 import Loader from "react-loader-spinner";
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
@@ -213,6 +213,7 @@ class PlantsList extends React.Component {
 
     componentDidMount() {
        this.props.getPlants(localStorage.getItem('id'))
+       this.props.getUser(localStorage.getItem('id'))
    
     }
 
@@ -235,16 +236,18 @@ class PlantsList extends React.Component {
         let datestring = `${date.getMonth()+1}-${date.getDate()}-${date.getFullYear()} ${this.state.newPlant.dailyWaterTime}`
         let date2 = new Date(datestring)
         let datestring2 = `${date2.getUTCMonth()+1}-${date2.getUTCDate()}-${date2.getUTCFullYear()} ${date2.getUTCHours()}:${date2.getUTCMinutes()}`
-
+        let userId = localStorage.getItem('id')
         if(this.props.user.useTwilio){
             const twilioObject = {
                 "plantName": this.state.newPlant.plantName,
                 "timeZone": "America/Chicago",
                 "time": datestring2,
                 "phoneNumber": this.props.user.phoneNumber,
-                "user_id": this.props.user.id
+                "user_id": userId
             }
+
             this.props.createTwilio(twilioObject)
+            console.log(twilioObject)
         }
 
     }
@@ -405,4 +408,4 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps, { getPlants, createPlant, createTwilio })(PlantsList)
+export default connect(mapStateToProps, { getPlants, createPlant, createTwilio, getUser })(PlantsList)
