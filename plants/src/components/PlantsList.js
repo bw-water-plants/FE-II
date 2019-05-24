@@ -227,7 +227,7 @@ class PlantsList extends React.Component {
 
 
     addPlant = e => {
-        debugger;
+
         this.props.createPlant(this.state.newPlant)
         //new Date('August 19, 1975 23:15:30 GMT+07:00');
         let date = new Date(); 
@@ -242,7 +242,7 @@ class PlantsList extends React.Component {
                 "timeZone": "America/Chicago",
                 "time": datestring2,
                 "phoneNumber": this.props.user.phoneNumber,
-                "user_id": this.props.user.user_id
+                "user_id": this.props.user.id
             }
             this.props.createTwilio(twilioObject)
         }
