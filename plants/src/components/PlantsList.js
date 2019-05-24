@@ -18,6 +18,9 @@ import image14 from '../assets/14.png';
 import image15 from '../assets/15.png';
 import image16 from '../assets/16.png';
 
+import imagez3 from '../assets/z3.png';
+import imagez4 from '../assets/z4.png';
+
 const NewPlantWrapper = styled.div`
     margin: 0 auto;
     width: 500px;
@@ -27,10 +30,11 @@ const NewPlantWrapper = styled.div`
 const PlantWrapper = styled.div`
 
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     /* justify-content: center; */
     
     margin: 30px 0;
+    margin-bottom: 0px;
     flex-wrap: wrap;
     
     a {        
@@ -50,6 +54,7 @@ const PlantLink = styled.div`
     font-size: 36px;
     font-family: 'Amatic SC', cursive;
     font-weight: bold;
+    padding-top: 15px;
 `
 
 const NewPlantForm = styled.form`
@@ -132,6 +137,7 @@ const NewPlantButton = styled.button`
 `
 
 const AddPlant = styled.div`
+    margin-top: 40px;
     display: flex;
     justify-content: center;
 `
@@ -143,8 +149,8 @@ const AddPlantButton = styled.button`
     background: none;
     cursor: pointer;
     width: 60%;
-    margin: 20px auto;
-    /* margin: 10px auto 0; */
+    margin-right: 15px;
+
     
     font-family: 'Amatic SC', cursive;
     font-weight: 900;
@@ -156,7 +162,11 @@ const AddPlantButton = styled.button`
     box-shadow: hsla(210, 40%, 52%, .4) 2px 2px 22px;
     border-radius: 20px; 
     z-index: 0;  
-    overflow: hidden;   
+    overflow: hidden;
+    
+    :hover{
+        background-color: hsl(200, 90%, 42%);
+    }
 
     ::before {
         content: '';
@@ -451,7 +461,9 @@ class PlantsList extends React.Component {
 
                 : 
                 <AddPlant>
+                    <img src={imagez3} alt={imagez3} width="55px" height="55px"/>
                     <AddPlantButton onClick={() => this.toggleAddPlantForm()}>Add New Plant</AddPlantButton>
+                    <img src={imagez4} alt={imagez4} width="55px" height="55px"/>
                 </AddPlant>
                 }
             

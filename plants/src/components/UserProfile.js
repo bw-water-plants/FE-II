@@ -314,7 +314,7 @@ class UserProfile extends React.Component {
                     <UserInfo>
                         <LeftSide>
                             <strong>Phone Number: </strong>
-                            <strong>Recieving Reminders: </strong>
+                            <strong>Text Notification: </strong>
                             <strong>GreenThumb Score: </strong>
                         </LeftSide>
                         <RightSide>
