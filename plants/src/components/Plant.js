@@ -2,9 +2,49 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getPlant, updatePlant, deletePlant } from '../actions/actions';
 import PlantAvatar from './PlantAvatar';
+import styled from 'styled-components';
 
-import moment from 'moment';
+const PlantWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 30px;
 
+    img {
+        width: 100px;
+    }
+
+    h3 {
+        font-family: 'Amatic SC', cursive;
+        font-size: 35px;
+        color: #538b53;
+    }
+`
+
+const WaterTime = styled.div`
+    background-color: hsl(210,80%,42%);
+    width: 75px;
+    color: white;
+    border-radius: 5px;
+    font-size: 12px;
+    padding: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+    margin: 0 auto;
+`
+
+const PlantButtonsWrapper = styled.div`
+    margin-top: 20px;
+`
+
+const EditPlantButton = styled.button`
+    border: none;
+    color: #538b53;
+    font-size: 25px;
+    cursor: pointer;
+    background: none;
+`
 
 class Plant extends React.Component {
 
@@ -72,14 +112,18 @@ class Plant extends React.Component {
 
         return(
             <div>
-                <PlantAvatar avatarId={this.state.plantAvatarId} avatarHeight="100px" /><br />
-                {!this.state.isUpdatingPlant ?
-                <div>
-                    <h3> {this.state.formData.plantName}</h3>
-                    <p>Watering Time: {this.state.formData.dailyWaterTime}</p>
-                    <button onClick={() => this.toggleForm()}><i className="fas fa-edit"></i></button>
-                    <button onClick={() => this.removePlant(this.state.plantid)}><i className="fas fa-trash-alt"></i></button>
-                </div>
+                <PlantWrapper>
+                    <PlantAvatar avatarId={this.state.plantAvatarId} avatarHeight="100px" />
+                    {!this.state.isUpdatingPlant ?
+                    <div>
+                        <h3> {this.state.formData.plantName}</h3>
+                        <WaterTime><span>Watering Time: {this.state.formData.dailyWaterTime}</span></WaterTime>
+                        <PlantButtonsWrapper>
+                            <EditPlantButton onClick={() => this.toggleForm()}><i className="fas fa-edit"></i></EditPlantButton>
+                            <EditPlantButton onClick={() => this.removePlant(this.state.plantid)}><i className="fas fa-trash-alt"></i></EditPlantButton>
+                        </PlantButtonsWrapper>
+                    </div>
+                
                     :
                     <div>
                         <form>
@@ -99,7 +143,9 @@ class Plant extends React.Component {
                         <button onClick={() => this.handleEditPlant()}>Confirm</button>
                         <button onClick={() => this.toggleForm()}>Cancel</button>
                     </div>
-                }                
+                
+                }  
+                </PlantWrapper>              
             </div>
 
         );
