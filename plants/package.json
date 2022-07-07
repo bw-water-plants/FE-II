@@ -8,7 +8,7 @@
     "axios": "^0.18.0",
     "material-ui": "^0.20.2",
     "material-ui-time-picker": "^1.2.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "react": "^16.8.6",
     "react-countdown-now": "^2.1.0",
     "react-dom": "^16.8.6",
